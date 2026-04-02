@@ -1,0 +1,19 @@
+# Global rules for all search engines (Google, Bing, etc.)
+User-agent: *
+Allow: /
+
+# Block sensitive backend or system directories
+Disallow: /admin/
+Disallow: /config/
+Disallow: /node_modules/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /api/auth/
+
+# Block specific file types that don't need to be indexed
+Disallow: /*.json$
+Disallow: /*.log$
+Disallow: /*.env$
+
+# Link to your sitemap to help engines find your pages faster
+Sitemap: https://dcorelab.com/sitemap.xml
