@@ -1,0 +1,2500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Dcore Lab - SaaS Solutions, Digital Marketing & Web Development Agency in West Bengal, India." />
+    <title>Dcore Lab — Premium SaaS & Digital Marketing Agency | West Bengal</title>
+    
+    <!-- Bootstrap 5.3 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Font Awesome -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --primary-light: #F8FAFC;
+            --secondary-light: #F1F5F9;
+            --tertiary-light: #E2E8F0;
+            --accent-blue: #3B82F6;
+            --accent-purple: #8B5CF6;
+            --accent-pink: #EC4899;
+            --accent-cyan: #06B6D4;
+            --accent-emerald: #10B981;
+            --accent-amber: #F59E0B;
+            --text-dark: #1E293B;
+            --text-light: #475569;
+            --text-lighter: #64748B;
+            --border-light: #E2E8F0;
+            --shadow: 0 10px 35px rgba(59, 130, 246, 0.15);
+            --shadow-lg: 0 20px 50px rgba(59, 130, 246, 0.2);
+            --shadow-glow: 0 0 40px rgba(139, 92, 246, 0.25);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #FFFFFF 50%, #F0F9FF 100%);
+            
+            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ── ANIMATED DOTTED BACKGROUND ── */
+        #animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: linear-gradient(135deg, var(--primary-light) 0%, #FFFFFF 50%, #F0F9FF 100%);
+        }
+
+        .dot {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.6), rgba(139, 92, 246, 0.3));
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .dot.blue {
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.7), rgba(59, 130, 246, 0.2));
+        }
+
+        .dot.purple {
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.7), rgba(139, 92, 246, 0.2));
+        }
+
+        .dot.pink {
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.6), rgba(236, 72, 153, 0.2));
+        }
+
+        .dot.cyan {
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.6), rgba(6, 182, 212, 0.2));
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0.3;
+            }
+            25% {
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-50px) translateX(30px);
+                opacity: 1;
+            }
+            75% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0.3;
+            }
+        }
+
+        .line-connector {
+            position: absolute;
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.4), rgba(139, 92, 246, 0.2), transparent);
+            animation: drawLine 15s infinite ease-in-out;
+        }
+
+        @keyframes drawLine {
+            0% {
+                opacity: 0.2;
+                transform: scaleX(0);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scaleX(1);
+            }
+            100% {
+                opacity: 0.2;
+                transform: scaleX(1);
+            }
+        }
+
+        /* ── NAVIGATION ── */
+        nav.navbar {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--border-light);
+            transition: all 0.3s;
+            position: relative;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.08);
+        }
+
+        nav.navbar.scrolled {
+            box-shadow: var(--shadow-lg);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.4));
+        }
+
+        .navbar-brand i {
+            font-size: 2rem;
+        }
+
+        .nav-link {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            margin: 0 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            transition: width 0.3s;
+            border-radius: 3px;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 10px 28px !important;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white !important;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.5);
+        }
+
+        /* ── HERO SECTION ── */
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 100px 5vw 50px;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid var(--accent-blue);
+            padding: 12px 24px;
+            border-radius: 50px;
+            margin-bottom: 2rem;
+            animation: slideUp 0.8s ease-out;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-headline {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            animation: slideUp 0.8s ease-out 0.1s backwards;
+        }
+
+        .hero-headline .accent {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientFlow 4s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% { filter: hue-rotate(0deg) brightness(1); }
+            50% { filter: hue-rotate(15deg) brightness(1.1); }
+            100% { filter: hue-rotate(0deg) brightness(1); }
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.9;
+            animation: slideUp 0.8s ease-out 0.2s backwards;
+            font-weight: 500;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideUp 0.8s ease-out 0.3s backwards;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.6);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--accent-blue);
+            border: 3px solid var(--accent-blue);
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.15);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(59, 130, 246, 0.05);
+            transform: translateY(-4px);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 5rem;
+            padding-top: 3rem;
+            border-top: 3px solid var(--border-light);
+            animation: slideUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.08));
+            border-radius: 20px;
+            border: 2px solid rgba(59, 130, 246, 0.15);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2), transparent);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-30px) translateX(-30px); }
+        }
+
+        .metric:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .metric-val {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ── SECTIONS ── */
+        section {
+            position: relative;
+            padding: 120px 5vw;
+            z-index: 2;
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.1);
+            padding: 10px 20px;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.8rem);
+            font-weight: 900;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-title .gradient-text {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-sub {
+            font-size: 1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            font-weight: 500;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ── SAAS SOLUTIONS ── */
+        #saas {
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border-bottom: 3px solid var(--border-light);
+        }
+
+        .saas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .saas-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 249, 255, 0.9));
+            border: 3px solid var(--border-light);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .saas-card::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -40%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15), transparent);
+            border-radius: 50%;
+            animation: orbitCircle 8s linear infinite;
+        }
+
+        @keyframes orbitCircle {
+            0% { transform: rotate(0deg) translateX(50px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
+        }
+
+        .saas-card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .saas-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, #FFFFFF 0%, rgba(230, 245, 255, 0.9) 100%);
+        }
+
+        .saas-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            border-radius: 50%;
+            color: white;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .saas-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .saas-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .saas-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .saas-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .saas-features li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--accent-emerald);
+            font-size: 1.2rem;
+        }
+
+        /* ── DIGITAL MARKETING ── */
+        #digital-marketing {
+            background: linear-gradient(180deg, rgba(236, 72, 153, 0.04) 0%, rgba(139, 92, 246, 0.04) 100%);
+            border-bottom: 3px solid var(--border-light);
+        }
+
+        .marketing-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .marketing-text h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .marketing-text p {
+            color: var(--text-light);
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .marketing-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .marketing-item {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.08), rgba(236, 72, 153, 0.04));
+            border-radius: 16px;
+            border: 2px solid rgba(236, 72, 153, 0.15);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .marketing-item::before {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.1), transparent);
+            border-radius: 50%;
+        }
+
+        .marketing-item:hover {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(236, 72, 153, 0.08));
+            transform: translateY(-8px);
+            border-color: var(--accent-pink);
+        }
+
+        .marketing-item h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .marketing-item p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .marketing-visual {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(236, 72, 153, 0.08));
+            border: 3px solid var(--border-light);
+            border-radius: 20px;
+            padding: 2rem;
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .marketing-visual::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15), transparent);
+            border-radius: 50%;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .marketing-visual img {
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            max-height: 400px;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ── BUSINESS GROWTH ── */
+        #business-growth {
+            background: linear-gradient(180deg, rgba(16, 185, 129, 0.04) 0%, rgba(59, 130, 246, 0.04) 100%);
+            border-bottom: 3px solid var(--border-light);
+        }
+
+        .growth-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .growth-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-bottom: 5rem;
+        }
+
+        .growth-text h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .growth-text p {
+            color: var(--text-light);
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .growth-points {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .growth-point {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(16, 185, 129, 0.04));
+            border-radius: 16px;
+            border: 2px solid rgba(16, 185, 129, 0.15);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .growth-point::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.1), transparent);
+            border-radius: 50%;
+        }
+
+        .growth-point:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.08));
+            transform: translateX(10px);
+            border-color: var(--accent-emerald);
+        }
+
+        .growth-point-num {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-emerald), var(--accent-cyan));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .growth-point-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .growth-point-text h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        .growth-point-text p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        .growth-visual {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(245, 158, 11, 0.08));
+            border: 3px solid var(--border-light);
+            border-radius: 20px;
+            padding: 2rem;
+            min-height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .growth-visual::before {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            right: -50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.15), transparent);
+            border-radius: 50%;
+            animation: float 12s ease-in-out infinite;
+        }
+
+        .growth-visual img {
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            max-height: 400px;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+        }
+
+        .growth-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .growth-stat-card {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border: 3px solid var(--border-light);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .growth-stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2), transparent);
+            border-radius: 50%;
+        }
+
+        .growth-stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-purple);
+        }
+
+        .growth-stat-val {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.75rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .growth-stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ── SERVICES ── */
+        #services {
+            background: linear-gradient(180deg, rgba(245, 158, 11, 0.04) 0%, rgba(139, 92, 246, 0.04) 100%);
+            border-bottom: 3px solid var(--border-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 248, 240, 0.9));
+            border: 3px solid var(--border-light);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            bottom: -40%;
+            left: -40%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.15), transparent);
+            border-radius: 50%;
+            animation: pulseCircle 6s ease-in-out infinite;
+        }
+
+        @keyframes pulseCircle {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        .service-card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--accent-amber);
+            box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, #FFFFFF 0%, rgba(255, 248, 240, 0.95) 100%);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent-amber), var(--accent-pink));
+            border-radius: 50%;
+            color: white;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.3);
+        }
+
+        .service-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .service-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .service-features li::before {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--accent-amber);
+            font-size: 0.8rem;
+        }
+
+        /* ── PORTFOLIO ── */
+        #portfolio {
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.04) 0%, rgba(59, 130, 246, 0.04) 100%);
+            border-bottom: 3px solid var(--border-light);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 249, 255, 0.95));
+            border: 3px solid var(--border-light);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .portfolio-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15), transparent);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent-blue);
+        }
+
+        .portfolio-thumb {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+        }
+
+        .portfolio-thumb img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .portfolio-card:hover .portfolio-thumb img {
+            transform: scale(1.12);
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .portfolio-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.75rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            color: var(--accent-blue);
+            padding: 8px 14px;
+            border-radius: 50px;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            letter-spacing: 0.5px;
+        }
+
+        .portfolio-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .portfolio-content p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .portfolio-stats {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .portfolio-stat {
+            flex: 1;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.08));
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid rgba(59, 130, 246, 0.15);
+        }
+
+        .portfolio-stat .num {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+        }
+
+        .portfolio-stat .lbl {
+            font-size: 0.75rem;
+            color: var(--text-lighter);
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── CONTACT ── */
+        #contact {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+            border-top: 3px solid var(--border-light);
+            border-bottom: 3px solid var(--border-light);
+            position: relative;
+        }
+
+        #contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.08), transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-info h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-info p {
+            margin-bottom: 2.5rem;
+            line-height: 1.9;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-method {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 16px;
+            border: 2px solid var(--border-light);
+            transition: all 0.3s;
+        }
+
+        .contact-method:hover {
+            border-color: var(--accent-blue);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .contact-method-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .contact-method-text {
+            flex: 1;
+        }
+
+        .contact-method-text span {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-method-text .label {
+            font-size: 0.8rem;
+            color: var(--text-lighter);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-method-text a {
+            color: var(--accent-blue);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 249, 255, 0.95));
+            border-radius: 20px;
+            padding: 3rem;
+            border: 3px solid var(--border-light);
+            box-shadow: 0 10px 35px rgba(59, 130, 246, 0.15);
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            background: white;
+            color: var(--text-dark);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-lighter);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+            background: rgba(59, 130, 246, 0.02);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .form-group-inline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* ── FLOATING ACTION BUTTONS ── */
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            z-index: 9999;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+            animation: slideInUp 0.6s ease-out;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floating-call {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            bottom: 120px;
+        }
+
+        .floating-whatsapp {
+            background: linear-gradient(135deg, var(--accent-emerald), var(--accent-cyan));
+            color: white;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.2);
+            box-shadow: 0 20px 50px rgba(59, 130, 246, 0.4);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 50%, #F0F9FF 100%);
+            color: var(--text-dark);
+            padding: 4rem 5vw 2rem;
+            border-top: 3px solid var(--border-light);
+            position: relative;
+            z-index: 2;
+        }
+.video_logo {
+    height: 60px;
+
+}
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 2px solid var(--border-light);
+        }
+
+        .footer-section h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-section a {
+            color: var(--text-light);
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-blue);
+            transform: translateX(8px);
+        }
+
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 1.5rem;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .footer-bottom p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            nav.navbar {
+                padding: 1rem 4vw;
+            }
+.video_logo {
+    height: 60px;
+}
+            .navbar-brand {
+                font-size: 1.4rem;
+            }
+
+            .nav-link {
+                margin: 0 5px;
+                font-size: 0.8rem;
+            }
+
+            .hero-metrics {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                margin-top: 3rem;
+                padding-top: 2rem;
+            }
+
+            .metric {
+                padding: 1.5rem 1rem;
+            }
+
+            .metric-val {
+                font-size: 2rem;
+            }
+
+            .marketing-grid,
+            .growth-content,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .marketing-list,
+            .form-group-inline {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid,
+            .saas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 80px 4vw;
+            }
+
+            .section-title {
+                font-size: clamp(1.8rem, 4vw, 2.5rem);
+            }
+
+            .floating-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 1.6rem;
+            }
+            
+            .floating-call { 
+                bottom: 100px; 
+            }
+
+            #hero {
+                padding: 80px 4vw 40px;
+            }
+
+            .hero-headline {
+                font-size: clamp(1.8rem, 6vw, 3rem);
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-metrics {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar-toggler {
+                border-color: var(--accent-blue);
+            }
+
+            /* .navbar-toggler-icon {
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%283B, 130, 246, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+            } */
+
+            .marketing-text h3,
+            .growth-text h3 {
+                font-size: 1.8rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .growth-point {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .marketing-item h4,
+            .growth-point-text h4 {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ANIMATED DOTTED BACKGROUND -->
+    <div id="animated-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid px-4 px-md-5">
+            <a class="navbar-brand" href="#hero">
+               <video src="/asset/logo.mp4" autoplay muted loop  class="video_logo"></video>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#saas">
+                            <i class="fas fa-cloud"></i> SaaS
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#digital-marketing">
+                            <i class="fas fa-chart-line"></i> Marketing
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#business-growth">
+                            <i class="fas fa-rocket"></i> Growth
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">
+                            <i class="fas fa-cogs"></i> Services
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">
+                            <i class="fas fa-briefcase"></i> Portfolio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-cta btn btn-primary">
+                            <i class="fas fa-arrow-right"></i> Get Started
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <div class="hero-label">
+                <i class="fas fa-star"></i> Premium SaaS & Digital Solutions
+            </div>
+            <h1 class="hero-headline">
+                Transform Your Business with <span class="accent">Next-Generation Digital Innovation</span>
+            </h1>
+            <p class="hero-sub">
+                Dcore Lab delivers enterprise-grade SaaS platforms, cutting-edge digital marketing, and custom software solutions tailored for Indian businesses. Based in Rajgram, Bankura, West Bengal – empowering growth across India.
+            </p>
+            <div class="hero-actions">
+                <button class="btn btn-primary">
+                    <i class="fas fa-play-circle"></i> Start Free Trial
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-video"></i> Watch Demo
+                </button>
+            </div>
+            <div class="hero-metrics">
+                <div class="metric">
+                    <div class="metric-val">
+                        <i class="fas fa-smile"></i> 
+                        120+
+                    </div>
+                    <div class="metric-label">Happy Clients</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-val">
+                        <i class="fas fa-database"></i> 5M+
+                    </div>
+                    <div class="metric-label">Data Processed</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-val">
+                        <i class="fas fa-shield-alt"></i> 99.98%
+                    </div>
+                    <div class="metric-label">Uptime Guarantee</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-val">
+                        <i class="fas fa-headset"></i> 24/7
+                    </div>
+                    <div class="metric-label">Expert Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SaaS Solutions Section -->
+    <section id="saas">
+        <div class="container">
+            <div class="section-label">
+                <i class="fas fa-layer-group"></i> Platform Solutions
+            </div>
+            <h2 class="section-title">Enterprise-Grade <span class="gradient-text">SaaS Solutions</span></h2>
+            <p class="section-sub">
+                Scalable, secure, and affordable SaaS platforms built specifically for Indian businesses. From cloud infrastructure to AI-powered analytics – everything you need to accelerate growth.
+            </p>
+            
+            <div class="saas-grid">
+                <div class="saas-card fade-in">
+                    <div class="saas-card-content">
+                        <div class="saas-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3>Cloud Infrastructure</h3>
+                        <p>Reliable cloud hosting with auto-scaling, disaster recovery, and industry-leading uptime for growing Indian businesses.</p>
+                        <ul class="saas-features">
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> Auto-scaling infrastructure</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> 99.98% uptime SLA</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> Global + India CDN</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> End-to-end encryption</p>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="saas-card fade-in">
+                    <div class="saas-card-content">
+                        <div class="saas-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3>Analytics & Reporting</h3>
+                        <p>Real-time dashboards and custom reports to track KPIs, sales metrics, and customer behavior insights effortlessly.</p>
+                        <ul class="saas-features">
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> Real-time dashboards</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> Custom reports</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> Data visualization</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> Export to Excel/PDF</p>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="saas-card fade-in">
+                    <div class="saas-card-content">
+                        <div class="saas-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3>Security & Compliance</h3>
+                        <p>Enterprise-grade security with GDPR, DPDP Act compliance, and comprehensive audit logs for complete peace of mind.</p>
+                        <ul class="saas-features">
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Multi-factor authentication</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Role-based access control</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Complete audit logs</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .DPDP & GDPR ready</p>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="saas-card fade-in">
+                    <div class="saas-card-content">
+                        <div class="saas-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>API Integration</h3>
+                        <p>Seamless integration with Razorpay, Zoho, Google Workspace, and 50+ Indian and global tools for unified workflows.</p>
+                        <ul class="saas-features">
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .REST & GraphQL APIs</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Webhook support</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .SDKs for India</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Full documentation</p>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="saas-card fade-in">
+                    <div class="saas-card-content">
+                        <div class="saas-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>User Management</h3>
+                        <p>Team collaboration, granular permissions, and single sign-on – built for Indian SMBs and enterprise teams.</p>
+                        <ul class="saas-features">
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Team management</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Permission control</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Single sign-on (SSO)</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Easy user onboarding</p>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="saas-card fade-in">
+                    <div class="saas-card-content">
+                        <div class="saas-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile & Web Apps</h3>
+                        <p>Beautiful responsive web apps and native iOS & Android applications – fully optimized for Indian networks.</p>
+                        <ul class="saas-features">
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .iOS & Android apps</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Responsive web design</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Offline capabilities</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Cross-device sync</p>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Marketing Section -->
+    <section id="digital-marketing">
+        <div class="container">
+            <div class="marketing-grid">
+                <div class="marketing-text fade-in">
+                    <h3>Strategic Digital Marketing That Delivers Results</h3>
+                    <p>Elevate your brand with data-driven digital marketing strategies that actually work for Indian businesses. Expert SEO, Google Ads, social media management, and content marketing that drive real leads and measurable sales.</p>
+                    <p>From local Rajgram businesses to pan-India brands – we deliver exceptional ROI and sustainable growth.</p>
+                    
+                    <div class="marketing-list">
+                        <div class="marketing-item">
+                            <h4>
+                                <i class="fas fa-search"></i> SEO & Google Ads
+                            </h4>
+                            <p>Rank #1 on Google India and attract high-quality leads with proven SEO and paid search campaigns.</p>
+                        </div>
+                        <div class="marketing-item">
+                            <h4>
+                                <i class="fas fa-share-alt"></i> Social Media Management
+                            </h4>
+                            <p>Build engaged, loyal communities on Instagram, Facebook, LinkedIn, TikTok, and YouTube.</p>
+                        </div>
+                        <div class="marketing-item">
+                            <h4>
+                                <i class="fas fa-pen-fancy"></i> Content Marketing
+                            </h4>
+                            <p>Compelling blogs, viral videos, engaging reels that position your brand as an industry authority.</p>
+                        </div>
+                        <div class="marketing-item">
+                            <h4>
+                                <i class="fas fa-envelope"></i> Email & WhatsApp Marketing
+                            </h4>
+                            <p>Targeted campaigns that nurture leads through the funnel and convert them into loyal customers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="marketing-visual fade-in">
+                    <img src="./core_lab__2_-removebg-preview.png" alt="Marketing Analytics Dashboard" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Growth Section -->
+    <section id="business-growth">
+        <div class="growth-wrapper container">
+            <div class="section-label">
+                <i class="fas fa-chart-line"></i> Growth Acceleration
+            </div>
+            <h2 class="section-title">Accelerate Your <span class="gradient-text">Business Growth</span></h2>
+            <p class="section-sub">Proven strategies to scale your revenue, expand your market presence, and build a sustainable, profitable business in India.</p>
+
+            <div class="growth-content">
+                <div class="growth-text fade-in">
+                    <h3>Proven Growth Strategies for Indian Businesses</h3>
+                    <p>We help you identify untapped opportunities, optimize operations, and implement strategies that deliver real, measurable results – whether you're a startup in Bankura or an established enterprise in Kolkata.</p>
+                    
+                    <div class="growth-points">
+                        <div class="growth-point">
+                            <div class="growth-point-num">1</div>
+                            <div class="growth-point-text">
+                                <h4>
+                                    <i class="fas fa-microscope"></i> Market Analysis
+                                </h4>
+                                <p>In-depth research on Indian market trends, competitive landscape, and customer behavior patterns.</p>
+                            </div>
+                        </div>
+                        <div class="growth-point">
+                            <div class="growth-point-num">2</div>
+                            <div class="growth-point-text">
+                                <h4>
+                                    <i class="fas fa-lightbulb"></i> Strategy Development
+                                </h4>
+                                <p>Custom growth roadmap tailored to your unique business goals, market position, and budget.</p>
+                            </div>
+                        </div>
+                        <div class="growth-point">
+                            <div class="growth-point-num">3</div>
+                            <div class="growth-point-text">
+                                <h4>
+                                    <i class="fas fa-hammer"></i> Implementation
+                                </h4>
+                                <p>Hands-on execution alongside your team with real-time tracking and continuous optimization.</p>
+                            </div>
+                        </div>
+                        <div class="growth-point">
+                            <div class="growth-point-num">4</div>
+                            <div class="growth-point-text">
+                                <h4>
+                                    <i class="fas fa-sliders-h"></i> Optimization
+                                </h4>
+                                <p>Continuous monitoring, data analysis, and strategic refinement to maximize your ROI.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="growth-visual fade-in">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Business Growth Metrics and Analytics" />
+                </div>
+            </div>
+
+            <div class="growth-stats">
+                <div class="growth-stat-card fade-in">
+                    <div class="growth-stat-val">150%</div>
+                    <div class="growth-stat-label">Average Revenue Growth</div>
+                </div>
+                <div class="growth-stat-card fade-in">
+                    <div class="growth-stat-val">92%</div>
+                    <div class="growth-stat-label">Client Retention Rate</div>
+                </div>
+                <div class="growth-stat-card fade-in">
+                    <div class="growth-stat-val">60%</div>
+                    <div class="growth-stat-label">Market Expansion Success</div>
+                </div>
+                <div class="growth-stat-card fade-in">
+                    <div class="growth-stat-val">3.2x</div>
+                    <div class="growth-stat-label">ROI Multiplier</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-label">
+                <i class="fas fa-puzzle-piece"></i> What We Offer
+            </div>
+            <h2 class="section-title">Complete Digital <span class="gradient-text">Services</span></h2>
+            <p class="section-sub">Full-spectrum digital solutions from website development to AI-powered tools – designed specifically for Indian businesses to thrive in the digital economy.</p>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Web Development</h3>
+                        <p>Fast, secure, and mobile-first websites that rank on Google India and convert visitors into paying customers.</p>
+                        <ul class="service-features">
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Responsive & SEO-optimized</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Lightning-fast performance</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Razorpay & UPI integration</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Security hardened</p>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>UI/UX Design</h3>
+                        <p>Beautiful, intuitive designs that feel premium and work flawlessly on Indian devices and networks.</p>
+                        <ul class="service-features">
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .User research</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Wireframing & prototyping</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Usability testing</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Modern design language</p>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile Apps</h3>
+                        <p>Native iOS & Android apps with offline support – perfect for delivery, e-commerce, and service businesses in India.</p>
+                        <ul class="service-features">
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .iOS & Android development</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Cross-platform (React Native)</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Push notifications</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .App Store & Play Store optimization</p>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>AI & Machine Learning</h3>
+                        <p>Smart tools for chatbots, predictive analytics, inventory optimization, and personalized customer experiences.</p>
+                        <ul class="service-features">
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Custom AI models</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Predictive analytics</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .WhatsApp chatbots</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Automation solutions</p>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3>Cloud Solutions</h3>
+                        <p>AWS & Indian cloud migration services with cost optimization strategies for small and medium businesses.</p>
+                        <ul class="service-features">
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Cloud architecture</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Secure migration</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .24/7 monitoring</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Cost reduction strategies</p>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-card-content">
+                        <div class="service-icon">
+                            <i class="fas fa-compass"></i>
+                        </div>
+                        <h3>Consulting & Strategy</h3>
+                        <p>Expert guidance to align technology with your business goals and help you scale profitably and sustainably.</p>
+                        <ul class="service-features">
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Digital transformation</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Business strategy</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Tech roadmap</p>
+                            <p><i class="fa-sharp-duotone fa-solid fa-pen-fancy"></i> .Change management</p>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-label">
+                <i class="fas fa-trophy"></i> Recent Work
+            </div>
+            <h2 class="section-title">Our <span class="gradient-text">Success Stories</span></h2>
+            <p class="section-sub">Real projects. Real results. From e-commerce platforms to healthcare solutions – proudly built for Indian clients and businesses.</p>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-card fade-in">
+                    <div class="portfolio-thumb">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600&h=400&fit=crop" alt="Premium Fashion E-Commerce Platform" />
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">
+                            <i class="fas fa-shopping-cart"></i> E-Commerce
+                        </span>
+                        <h3>Premium Fashion Platform</h3>
+                        <p>Full-featured online store with UPI payments, size recommendations, and nationwide delivery logistics.</p>
+                        <div class="portfolio-stats">
+                            <div class="portfolio-stat">
+                                <div class="num">250K</div>
+                                <div class="lbl">Active Users</div>
+                            </div>
+                            <div class="portfolio-stat">
+                                <div class="num">₹2.5Cr+</div>
+                                <div class="lbl">Revenue</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card fade-in">
+                    <div class="portfolio-thumb">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Digital Banking & FinTech Solution" />
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">
+                            <i class="fas fa-credit-card"></i> FinTech
+                        </span>
+                        <h3>Digital Banking Solution</h3>
+                        <p>Secure banking app with instant UPI transfers, loan products, and complete KYC verification.</p>
+                        <div class="portfolio-stats">
+                            <div class="portfolio-stat">
+                                <div class="num">500K</div>
+                                <div class="lbl">Accounts</div>
+                            </div>
+                            <div class="portfolio-stat">
+                                <div class="num">99.99%</div>
+                                <div class="lbl">Uptime</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card fade-in">
+                    <div class="portfolio-thumb">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f70d504f0?w=600&h=400&fit=crop" alt="Learning Management System" />
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">
+                            <i class="fas fa-book"></i> EdTech
+                        </span>
+                        <h3>Learning Management System</h3>
+                        <p>Interactive online courses with HD video streaming, live classes, and comprehensive progress tracking.</p>
+                        <div class="portfolio-stats">
+                            <div class="portfolio-stat">
+                                <div class="num">100K</div>
+                                <div class="lbl">Students</div>
+                            </div>
+                            <div class="portfolio-stat">
+                                <div class="num">5K+</div>
+                                <div class="lbl">Courses</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card fade-in">
+                    <div class="portfolio-thumb">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop" alt="Telemedicine Healthcare Platform" />
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">
+                            <i class="fas fa-stethoscope"></i> Healthcare
+                        </span>
+                        <h3>Telemedicine Platform</h3>
+                        <p>HIPAA & DPDP compliant video consultations connecting doctors with patients across West Bengal.</p>
+                        <div class="portfolio-stats">
+                            <div class="portfolio-stat">
+                                <div class="num">50K</div>
+                                <div class="lbl">Patients</div>
+                            </div>
+                            <div class="portfolio-stat">
+                                <div class="num">10K</div>
+                                <div class="lbl">Doctors</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card fade-in">
+                    <div class="portfolio-thumb">
+                        <img src="https://images.unsplash.com/photo-1485869714565-74489c95b41b?w=600&h=400&fit=crop" alt="Fleet Management & Logistics" />
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">
+                            <i class="fas fa-truck"></i> Logistics
+                        </span>
+                        <h3>Fleet Management System</h3>
+                        <p>Real-time GPS tracking, intelligent route optimization, and comprehensive fuel analytics for logistics.</p>
+                        <div class="portfolio-stats">
+                            <div class="portfolio-stat">
+                                <div class="num">5K</div>
+                                <div class="lbl">Vehicles</div>
+                            </div>
+                            <div class="portfolio-stat">
+                                <div class="num">30%</div>
+                                <div class="lbl">Cost Saving</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-card fade-in">
+                    <div class="portfolio-thumb">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Enterprise CRM Platform" />
+                    </div>
+                    <div class="portfolio-content">
+                        <span class="portfolio-tag">
+                            <i class="fas fa-users-cog"></i> Enterprise
+                        </span>
+                        <h3>Enterprise CRM Platform</h3>
+                        <p>Complete sales and customer management system with seamless WhatsApp business integration.</p>
+                        <div class="portfolio-stats">
+                            <div class="portfolio-stat">
+                                <div class="num">2000</div>
+                                <div class="lbl">Users</div>
+                            </div>
+                            <div class="portfolio-stat">
+                                <div class="num">40%</div>
+                                <div class="lbl">Productivity ↑</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>
+                        <i class="fas fa-handshake"></i> Let's Build Together
+                    </h3>
+                    <p>Ready to transform your business? We're based in Rajgram, Bankura, West Bengal, serving innovative businesses across India. Connect with us today via phone, WhatsApp, or email.</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-method-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-method-text">
+                                <span class="label">Call Us</span>
+                                <a href="tel:+918016565951">
+                                    <i class="fas fa-mobile-alt"></i> +91 80165 65951
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-method-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-method-text">
+                                <span class="label">Email</span>
+                                <a href="mailto:d.core.lab.digital@gmail.com">
+                                    <i class="fas fa-envelope"></i> d.core.lab.digital@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-method-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-method-text">
+                                <span class="label">Address</span>
+                                <span><i class="fas fa-map-pin"></i> Rajgram, Bankura, West Bengal, India</span>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="contact-method-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="contact-method-text">
+                                <span class="label">WhatsApp</span>
+                                <a href="https://wa.me/918016565951" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> +91 80165 65951
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+              <form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+    
+    <input type="hidden" name="subject" value="New Inquiry from Dcore Lab Website!">
+    <input type="hidden" name="from_name" value="Dcore Lab Contact Form">
+    <input type="hidden" name="redirect" value="https://yourwebsite.com/thanks"> <div class="form-group-inline">
+        <div class="form-group">
+            <label for="name">
+                <i class="fas fa-user"></i> Full Name
+            </label>
+            <input type="text" id="name" name="name" required placeholder="Your name">
+        </div>
+        <div class="form-group">
+            <label for="email">
+                <i class="fas fa-envelope"></i> Email Address
+            </label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="phone">
+            <i class="fas fa-phone"></i> Contact Number
+        </label>
+        <input type="tel" id="phone" name="phone" required placeholder="+91 00000-00000">
+    </div>
+
+    <div class="form-group">
+        <label for="company">
+            <i class="fas fa-building"></i> Company Name
+        </label>
+        <input type="text" id="company" name="company" placeholder="Your company (optional)">
+    </div>
+
+    <div class="form-group">
+        <label for="subject_selection">
+            <i class="fas fa-list"></i> I'm interested in
+        </label>
+        <select id="subject_selection" name="service_interested" required>
+            <option value="">Select a service</option>
+            <option value="saas">SaaS Platform</option>
+            <option value="marketing">Digital Marketing</option>
+            <option value="development">Web / Mobile Development</option>
+            <option value="consulting">Consulting & Strategy</option>
+            <option value="other">Other</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="message">
+            <i class="fas fa-comment"></i> Tell Us About Your Project
+        </label>
+        <textarea id="message" name="message" required placeholder="Describe your project, goals, and timeline..."></textarea>
+    </div>
+
+    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+    <button type="submit" class="btn btn-primary">
+        <i class="fas fa-paper-plane"></i> Send Message
+    </button>
+</form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Buttons -->
+    <a href="tel:+918016565951" class="floating-btn floating-call" aria-label="Call Now" title="Call Us">
+        <i class="fas fa-phone"></i>
+    </a>
+    <a href="https://wa.me/918016565951" class="floating-btn floating-whatsapp" target="_blank" aria-label="WhatsApp" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content container">
+            <div class="footer-section">
+                <img src="/asset/core_lab__2_-removebg-preview.png" alt="" style="height: 100px;">
+                <h4>
+                    
+                    <i class="fas fa-info-circle"></i> About Dcore Lab
+                </h4>
+                <p>A West Bengal-based SaaS and digital innovation agency empowering Indian businesses to grow through affordable, cutting-edge technology solutions and strategic digital marketing.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>
+                    <i class="fas fa-cogs"></i> Services
+                </h4>
+                <ul>
+                    <li>
+                        <a href="#saas">
+                            <i class="fas fa-cloud"></i> SaaS Solutions
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#digital-marketing">
+                            <i class="fas fa-chart-line"></i> Digital Marketing
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#business-growth">
+                            <i class="fas fa-rocket"></i> Growth Strategies
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#services">
+                            <i class="fas fa-code"></i> Web & Mobile Development
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#services">
+                            <i class="fas fa-brain"></i> AI & Cloud Services
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>
+                    <i class="fas fa-link"></i> Company
+                </h4>
+                <ul>
+                    <li>
+                        <a href="#hero">
+                            <i class="fas fa-home"></i> Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#portfolio">
+                            <i class="fas fa-briefcase"></i> Portfolio
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact">
+                            <i class="fas fa-envelope"></i> Contact Us
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-lock"></i> Privacy Policy
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-file-contract"></i> Terms of Service
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>
+                    <i class="fas fa-phone"></i> Contact
+                </h4>
+                <ul>
+                    <li>
+                        <a href="tel:+918016565951">
+                            <i class="fas fa-mobile-alt"></i> +91 80165 65951
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:d.core.lab.digital@gmail.com">
+                            <i class="fas fa-envelope"></i> Email Us
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fas fa-map-pin"></i> Rajgram, Bankura, West Bengal
+                    </li>
+                    <li>
+                        <a href="https://wa.me/918016565951" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Dcore Lab. All rights reserved. | <video src="/asset/logo.mp4" autoplay muted loop style="height: 30px;"></video>  | Crafted with <i class="fas fa-heart"></i> in West Bengal, India </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // ── ANIMATED DOTTED BACKGROUND ──
+        const bgContainer = document.getElementById('animated-bg');
+        const dotCount = 80;
+        const lineCount = 15;
+
+        // Create animated dots
+        for (let i = 0; i < dotCount; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            
+            const colorClasses = ['blue', 'purple', 'pink', 'cyan'];
+            dot.classList.add(colorClasses[Math.floor(Math.random() * colorClasses.length)]);
+            
+            dot.style.left = Math.random() * 100 + '%';
+            dot.style.top = Math.random() * 100 + '%';
+            dot.style.animationDelay = Math.random() * 20 + 's';
+            dot.style.animationDuration = (15 + Math.random() * 20) + 's';
+            
+            bgContainer.appendChild(dot);
+        }
+
+        // Create animated lines
+        for (let i = 0; i < lineCount; i++) {
+            const line = document.createElement('div');
+            line.className = 'line-connector';
+            
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const width = 100 + Math.random() * 200;
+            const height = 1 + Math.random() * 2;
+            const rotation = Math.random() * 360;
+            
+            line.style.left = x + '%';
+            line.style.top = y + '%';
+            line.style.width = width + 'px';
+            line.style.height = height + 'px';
+            line.style.transform = `rotate(${rotation}deg)`;
+            line.style.animationDelay = Math.random() * 15 + 's';
+            line.style.animationDuration = (12 + Math.random() * 18) + 's';
+            
+            bgContainer.appendChild(line);
+        }
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Fade in on scroll
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        console.log('%c✨ Dcore Lab Premium Website Loaded!', 'color:#3B82F6; font-size:18px; font-weight:bold;');
+        console.log('%c🎨 Light Theme | Animated Dotted Background | Beautiful Modern Design', 'color:#8B5CF6; font-size:14px; font-weight:bold;');
+    </script>
+</body>
+
+</html>
