@@ -1,0 +1,61 @@
+<!-- views/error.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: #333; 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px; 
+        }
+        .container { 
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 2rem; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+            width: 100%; 
+            max-width: 400px; 
+            text-align: center; 
+            backdrop-filter: blur(10px); 
+        }
+        h2 { color: #e74c3c; margin-bottom: 1rem; }
+        p { margin-bottom: 1.5rem; color: #666; }
+        button { 
+            background: #e74c3c; 
+            color: white; 
+            border: none; 
+            padding: 12px 24px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            transition: background 0.3s; 
+        }
+        button:hover { background: #c0392b; }
+        .link { margin-top: 1rem; }
+        .link a { color: #667eea; text-decoration: none; }
+        @media (max-width: 480px) { 
+            .container { padding: 1.5rem; margin: 10px; } 
+            body { padding: 10px; } 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Oops! Something went wrong</h2>
+        <p><%= message %></p>
+        <button onclick="history.back()">Go Back</button>
+        <div class="link">
+            <a href="/admin/login">Go to Login</a>
+        </div>
+    </div>
+</body>
+</html>

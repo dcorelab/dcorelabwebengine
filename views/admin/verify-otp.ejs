@@ -1,0 +1,82 @@
+<!-- views/verify-otp.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: #333; 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px; 
+        }
+        .container { 
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 2rem; 
+            border-radius: 15px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); 
+            width: 100%; 
+            max-width: 400px; 
+            backdrop-filter: blur(10px); 
+            text-align: center; 
+        }
+        h2 { color: #667eea; margin-bottom: 1rem; }
+        p { margin-bottom: 1.5rem; color: #666; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: bold; color: #555; text-align: left; }
+        input { 
+            width: 100%; 
+            padding: 12px; 
+            margin-bottom: 1rem; 
+            border: 2px solid #ddd; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            text-align: center; 
+            transition: border-color 0.3s; 
+        }
+        input:focus { outline: none; border-color: #667eea; }
+        button { 
+            width: 100%; 
+            padding: 12px; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            transition: transform 0.2s; 
+        }
+        button:hover { transform: translateY(-2px); }
+        .resend { margin-top: 1rem; color: #667eea; text-decoration: none; display: inline-block; }
+        @media (max-width: 480px) { 
+            .container { padding: 1.5rem; margin: 10px; } 
+            body { padding: 10px; } 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Verify OTP</h2>
+        <p>Enter the 6-digit code sent to <strong><%= email %></strong></p>
+        <form action="/admin/verify-otp" method="POST">
+            <label for="otp">OTP Code:</label>
+            <input type="text" id="otp" name="otp" maxlength="6" pattern="\d{6}" required>
+            
+            <button type="submit">Verify</button>
+        </form>
+        <a href="#" class="resend" onclick="resendOTP()">Resend OTP</a>
+        <script>
+            function resendOTP() {
+                // Implement resend logic if needed (e.g., AJAX call)
+                alert('Resend functionality can be added via AJAX.');
+            }
+        </script>
+    </div>
+</body>
+</html>
