@@ -3,163 +3,208 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dcore Lab • Admin</title>
+  <title>Dcore Lab • Admin Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   
   <link rel="icon" href="/asset/core_lab__2_-removebg-preview.png" type="image/png">
-  
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script src="https://apis.google.com/js/api.js"></script>
 
   <style>
-    body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; }
-    .glass { background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.05); }
-    .sidebar { transition: all 0.3s ease; }
-    .particle-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-    .logo-gradient { background: linear-gradient(90deg, #000000, #000000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .ga-chart { height: 320px; }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: linear-gradient(145deg, #f1f5f9 0%, #c7d2fe 100%);
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+
+    .stat-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 30px 60px -15px rgb(99 102 241 / 0.3);
+    }
+
+    .tab {
+      transition: all 0.3s ease;
+    }
+    
+    .tab-active {
+      background: linear-gradient(90deg, #6366f1, #8b5cf6);
+      color: white;
+      box-shadow: 0 10px 15px -3px rgb(99 102 241 / 0.4);
+    }
+
+    .logo-glow {
+      filter: drop-shadow(0 0 15px rgb(99 102 241 / 0.5));
+    }
   </style>
 </head>
 <body class="min-h-screen text-zinc-800">
 
-  <div id="tsparticles" class="particle-bg"></div>
+  <!-- Premium Loading Screen -->
+  <div id="loading-screen" class="fixed inset-0 bg-gradient-to-br from-slate-950 to-indigo-950 flex items-center justify-center z-[9999]">
+    <div class="text-center">
+      <img src="/asset/core_lab__2_-removebg-preview.png" 
+           alt="Dcore Lab" 
+           class="w-32 h-32 mx-auto logo-glow animate-pulse">
+      <div class="mt-10 flex items-center justify-center gap-3">
+        <div class="w-2 h-2 bg-white rounded-full animate-bounce"></div>
+        <div class="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:150ms]"></div>
+        <div class="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:300ms]"></div>
+      </div>
+      <p class="text-white/70 mt-8 text-sm font-medium tracking-widest">INITIALIZING DASHBOARD...</p>
+    </div>
+  </div>
 
   <div class="flex h-screen overflow-hidden">
 
-    <!-- Sidebar (same as before) -->
-    <div id="sidebar" class="sidebar w-64 bg-white border-r border-zinc-200 flex flex-col shadow-xl">
-      <div class="p-6 border-b border-zinc-100">
-        <h1 class="text-3xl font-bold tracking-tight flex items-center gap-3">
-          <img src="/asset/core_lab__2_-removebg-preview.png" style="height: 40px;" alt="Dcore Lab">
-          <span class="logo-gradient">Dcore Lab</span>
-        </h1>
-      </div>
-      <div class="flex-1 overflow-y-auto p-4">
-        <nav class="space-y-1">
-          <a href="#" class="flex items-center gap-3 px-4 py-3 text-sm font-medium bg-violet-50 text-violet-700 rounded-2xl">
-            <i class="fa-solid fa-gauge-high"></i> Dashboard
-          </a>
-          <!-- other nav links same -->
-        </nav>
-      </div>
-      <div class="p-4 border-t border-zinc-100">
-        <div class="flex items-center gap-3 px-4 py-3 bg-zinc-50 rounded-2xl">
-          <div class="w-10 h-10 bg-zinc-200 rounded-full flex items-center justify-center text-2xl">👨‍💼</div>
+    <!-- Enhanced Sidebar -->
+    <div id="sidebar" class="w-72 bg-white/95 border-r border-zinc-200 flex flex-col shadow-2xl backdrop-blur-xl">
+      <div class="p-8 border-b border-zinc-100">
+        <div class="flex items-center gap-4">
+          <img src="/asset/core_lab__2_-removebg-preview.png" style="height: 52px;" alt="Dcore Lab" class="logo-glow">
           <div>
-            <p class="font-medium text-zinc-800">Subhadip</p>
-            <p class="text-xs text-zinc-500">Admin</p>
+            <h1 class="text-3xl font-bold tracking-tighter bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 bg-clip-text text-transparent">Dcore Lab</h1>
+            <p class="text-xs text-zinc-500 -mt-1">Admin Portal</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-1 px-6 py-8 space-y-2 overflow-y-auto">
+        <a href="#" class="flex items-center gap-4 px-6 py-4 rounded-3xl bg-gradient-to-r from-indigo-50 to-violet-50 text-indigo-700 font-semibold">
+          <i class="fa-solid fa-house text-xl"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="#" class="flex items-center gap-4 px-6 py-4 rounded-3xl text-zinc-600 hover:bg-zinc-100 transition-colors">
+          <i class="fa-solid fa-users text-xl"></i>
+          <span>Visitors</span>
+        </a>
+        <a href="#" class="flex items-center gap-4 px-6 py-4 rounded-3xl text-zinc-600 hover:bg-zinc-100 transition-colors">
+          <i class="fa-solid fa-chart-pie text-xl"></i>
+          <span>Analytics</span>
+        </a>
+      </div>
+
+      <div class="p-6 border-t">
+        <div class="flex items-center gap-4 p-4 bg-zinc-50 rounded-3xl">
+          <div class="w-11 h-11 bg-gradient-to-br from-indigo-500 to-violet-500 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shadow">S</div>
+          <div class="flex-1">
+            <p class="font-semibold">Subhadip</p>
+            <p class="text-emerald-600 text-sm flex items-center gap-1">
+              <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span> Online
+            </p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- Main Area -->
     <div class="flex-1 flex flex-col overflow-hidden">
-      <header class="bg-white border-b border-zinc-200 px-6 py-4 flex items-center justify-between shadow-sm">
-        <!-- Top navbar same as before -->
-        <div class="flex items-center gap-4">
-          <button onclick="toggleSidebar()" class="lg:hidden text-2xl text-zinc-600"><i class="fa-solid fa-bars"></i></button>
-          <div class="relative w-80">
-            <input type="text" placeholder="Search anything..." class="w-full bg-zinc-100 border border-zinc-200 focus:border-violet-400 rounded-2xl py-3 px-5 pl-12 outline-none text-sm"/>
-            <i class="fa-solid fa-magnifying-glass absolute left-5 top-3.5 text-zinc-400"></i>
-          </div>
-        </div>
+      <header class="bg-white/90 backdrop-blur-xl border-b px-10 py-6 flex items-center justify-between">
         <div class="flex items-center gap-6">
-          <button class="relative hover:scale-110 transition-transform"><i class="fa-solid fa-bell text-xl text-zinc-600"></i><span class="absolute -top-1 -right-1 w-5 h-5 bg-rose-500 text-white text-xs rounded-full flex items-center justify-center">3</span></button>
-          <button class="hover:scale-110 transition-transform text-zinc-600"><i class="fa-solid fa-sun text-xl"></i></button>
+          <button onclick="toggleSidebar()" class="lg:hidden text-3xl text-zinc-500">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h2 class="text-3xl font-semibold tracking-tight text-zinc-800">Analytics Overview</h2>
+        </div>
+
+        <div class="flex items-center gap-8">
+         
           <div class="flex items-center gap-3">
             <div class="text-right">
-              <p class="text-sm font-medium">Subhadip</p>
-              <p class="text-xs text-emerald-600">Online</p>
+              <p class="font-semibold text-zinc-800">Subhadip</p>
+              <p class="text-xs text-zinc-500">Administrator</p>
             </div>
-            <div class="w-9 h-9 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-2xl flex items-center justify-center text-white font-bold shadow">S</div>
+            <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-2xl flex items-center justify-center text-white font-bold shadow-inner">S</div>
           </div>
         </div>
       </header>
 
-      <main class="flex-1 overflow-y-auto p-8">
-        <h2 class="text-4xl font-semibold mb-2">Good afternoon, Subhadip 👋</h2>
-        <p class="text-zinc-500 mb-10">Here's what's happening with your platform today.</p>
+      <main class="flex-1 overflow-y-auto p-10">
+        <div class="max-w-screen-2xl mx-auto">
+          <!-- Welcome -->
+          <div class="mb-12">
+            <h1 class="text-6xl font-bold tracking-tighter text-zinc-900">Good afternoon, Subhadip 👋</h1>
+            <p class="text-xl text-zinc-500 mt-3">Here's a real-time snapshot of your platform.</p>
+          </div>
 
-        <!-- Metric Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Revenue, Total Users, Orders, Conversion same as before -->
-          <div class="glass border border-zinc-100 rounded-3xl p-6">
-            <div class="flex justify-between items-start">
+          <!-- Stat Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="glass stat-card rounded-3xl p-9">
+              <div class="flex justify-between">
+                <div>
+                  <p class="uppercase text-xs tracking-widest text-zinc-500 font-medium">Total Views</p>
+                  <p id="total-views" class="text-6xl font-bold mt-6 text-zinc-900">0</p>
+                </div>
+                <div class="text-5xl text-indigo-200">
+                  <i class="fa-solid fa-eye"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass stat-card rounded-3xl p-9">
+              <div class="flex justify-between">
+                <div>
+                  <p class="uppercase text-xs tracking-widest text-zinc-500 font-medium">Unique Visitors</p>
+                  <p id="unique-visitors" class="text-6xl font-bold mt-6 text-violet-600">0</p>
+                </div>
+                <div class="text-5xl text-violet-200">
+                  <i class="fa-solid fa-user-group"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass stat-card rounded-3xl p-9">
+              <div class="flex justify-between">
+                <div>
+                  <p class="uppercase text-xs tracking-widest text-zinc-500 font-medium">Active Now</p>
+                  <p id="active-now" class="text-6xl font-bold mt-6 text-emerald-600">0</p>
+                </div>
+                <div class="text-5xl text-emerald-200">
+                  <i class="fa-solid fa-circle-dot"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass stat-card rounded-3xl p-9 flex items-center justify-center">
+              <a href="https://vercel.com/dcorelab/dcorelabwebengine/analytics" target="_blank"
+                 class="w-full text-center bg-gradient-to-r from-zinc-900 to-black hover:from-black hover:to-zinc-900 text-white py-5 rounded-3xl font-semibold text-lg transition-all flex items-center justify-center gap-3">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                Vercel Analytics
+              </a>
+            </div>
+          </div>
+
+          <!-- Chart Card with Tabs -->
+          <div class="mt-12 glass rounded-3xl p-10">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-10">
               <div>
-                <p class="text-zinc-500 text-sm">Total Revenue</p>
-                <p class="text-4xl font-bold mt-2 text-zinc-800">$248,950</p>
+                <h3 class="text-3xl font-semibold tracking-tight">Home Page Views Trend</h3>
+                <p class="text-zinc-500">Compare performance across different timeframes</p>
               </div>
-              <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-dollar-sign text-2xl"></i></div>
-            </div>
-          </div>
 
-          <div class="glass border border-zinc-100 rounded-3xl p-6">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-zinc-500 text-sm">Total Users (30d)</p>
-                <p id="total-users" class="text-4xl font-bold mt-2 text-zinc-800">—</p>
-              </div>
-              <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-users text-2xl"></i></div>
-            </div>
-          </div>
-
-          <!-- New: Search Console Cards -->
-          <div class="glass border border-zinc-100 rounded-3xl p-6">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-zinc-500 text-sm">Search Clicks (30d)</p>
-                <p id="search-clicks" class="text-4xl font-bold mt-2 text-amber-600">—</p>
-              </div>
-              <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-mouse-pointer text-2xl"></i></div>
-            </div>
-          </div>
-
-          <div class="glass border border-zinc-100 rounded-3xl p-6">
-            <div class="flex justify-between items-start">
-              <div>
-                <p class="text-zinc-500 text-sm">Search Impressions (30d)</p>
-                <p id="search-impressions" class="text-4xl font-bold mt-2 text-violet-600">—</p>
-              </div>
-              <div class="w-12 h-12 bg-violet-100 text-violet-600 rounded-2xl flex items-center justify-center"><i class="fa-solid fa-eye text-2xl"></i></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Analytics Section -->
-        <div class="mt-12">
-          <div class="flex items-center justify-between mb-6">
-            <h3 class="text-2xl font-semibold text-zinc-800">Analytics Overview</h3>
-            <button onclick="connectGoogleAnalytics()" class="text-violet-600 hover:text-violet-700 flex items-center gap-2 text-sm font-medium">
-              <i class="fa-solid fa-plug"></i> Connect Google Analytics + Search Console
-            </button>
-          </div>
-
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <!-- Real-time Visitors (GA4) -->
-            <div class="glass border border-zinc-100 rounded-3xl p-6">
-              <h4 class="font-medium mb-4 flex items-center gap-2"><i class="fa-solid fa-users text-emerald-600"></i> Real-time Visitors</h4>
-              <div id="realtime-visitors" class="text-6xl font-bold text-emerald-600 mb-2">—</div>
-              <p class="text-zinc-500 text-sm">Users currently on your site</p>
-              <button onclick="refreshRealtime()" class="mt-4 text-xs text-violet-600 hover:underline"><i class="fa-solid fa-rotate"></i> Refresh</button>
-            </div>
-
-            <!-- Sessions Chart -->
-            <div class="glass border border-zinc-100 rounded-3xl p-6">
-              <h4 class="font-medium mb-4">Sessions (Last 30 Days)</h4>
-              <div class="ga-chart bg-white rounded-2xl border border-zinc-100 p-4">
-                <canvas id="sessionsChart"></canvas>
+              <!-- Time Tabs -->
+              <div class="flex bg-white/70 backdrop-blur rounded-3xl p-1 shadow-inner">
+                <button onclick="switchPeriod(0)" id="tab-0" class="tab tab-active px-8 py-3 rounded-3xl text-sm font-semibold">Today</button>
+                <button onclick="switchPeriod(1)" id="tab-1" class="tab px-8 py-3 rounded-3xl text-sm font-semibold">7 Days</button>
+                <button onclick="switchPeriod(2)" id="tab-2" class="tab px-8 py-3 rounded-3xl text-sm font-semibold">30 Days</button>
+                <button onclick="switchPeriod(3)" id="tab-3" class="tab px-8 py-3 rounded-3xl text-sm font-semibold">All Time</button>
               </div>
             </div>
-          </div>
 
-          <!-- Looker Studio iframe (optional) -->
-          <div class="mt-8 glass border border-zinc-100 rounded-3xl p-6">
-            <h4 class="font-medium mb-6">Full Traffic Overview</h4>
-            <div class="bg-white rounded-2xl border border-zinc-100 overflow-hidden" style="height: 520px;">
-              <iframe src="https://lookerstudio.google.com/embed/reporting/YOUR_REPORT_ID" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+            <div class="bg-white rounded-2xl p-8 shadow-inner">
+              <canvas id="viewsChart" height="140"></canvas>
             </div>
           </div>
         </div>
@@ -168,128 +213,89 @@
   </div>
 
   <script>
-    // ================== CONFIGURATION ==================
-    const CLIENT_ID = 'YOUR_OAUTH_CLIENT_ID.apps.googleusercontent.com';   // ← Replace
-    const GA_PROPERTY_ID = 'YOUR_GA4_PROPERTY_ID';                        // ← Replace (number)
-    const GSC_SITE_URL = 'https://dcorelab.com/';                      // ← Replace with exact site URL from Search Console (or sc-domain:yourdomain.com)
-    // ===================================================
-
-    let tokenClient;
-    let gapiInited = false;
     let chartInstance = null;
+    let currentPeriod = 1;
+
+    // Hide loading screen
+    setTimeout(() => {
+      const loader = document.getElementById('loading-screen');
+      loader.style.transition = 'opacity 0.8s ease';
+      loader.style.opacity = '0';
+      setTimeout(() => loader.remove(), 800);
+    }, 2000);
 
     function toggleSidebar() {
       document.getElementById('sidebar').classList.toggle('-translate-x-full');
     }
 
-    // tsParticles
-    tsParticles.load("tsparticles", {
-      background: { color: { value: "transparent" } },
-      fpsLimit: 60,
-      particles: {
-        color: { value: ["#6d28d9", "#c026d3", "#a5b4fc"] },
-        links: { enable: true, color: "#e0e7ff", distance: 150, opacity: 0.15 },
-        move: { enable: true, speed: 1.5 },
-        number: { value: 80 },
-        opacity: { value: 0.4, random: true },
-        shape: { type: "circle" },
-        size: { value: { min: 1, max: 4 } }
-      },
-      interactivity: { events: { onHover: { enable: true, mode: "repulse" } } },
-      detectRetina: true
-    });
-
-    function initGapi() {
-      gapi.load('client', async () => {
-        await gapi.client.init({
-          clientId: CLIENT_ID,
-          discoveryDocs: [
-            'https://analyticsdata.googleapis.com/$discovery/rest?version=v1beta',
-            'https://searchconsole.googleapis.com/$discovery/rest?version=v1'
-          ],
-          scope: 'https://www.googleapis.com/auth/analytics.readonly https://www.googleapis.com/auth/webmasters.readonly'
-        });
-        gapiInited = true;
+    function updateTabs() {
+      document.querySelectorAll('.tab').forEach((tab, i) => {
+        tab.classList.toggle('tab-active', i === currentPeriod);
       });
     }
 
-    function initTokenClient() {
-      tokenClient = google.accounts.oauth2.initTokenClient({
-        client_id: CLIENT_ID,
-        scope: 'https://www.googleapis.com/auth/analytics.readonly https://www.googleapis.com/auth/webmasters.readonly',
-        callback: (resp) => {
-          if (resp.error) return console.error(resp);
-          loadAllData();
-        }
-      });
-    }
-
-    window.connectGoogleAnalytics = function() {
-      if (!gapiInited) return alert("Please wait a moment and try again.");
-      tokenClient.requestAccessToken({ prompt: '' });
-    };
-
-    async function loadAllData() {
-      if (!gapi.client.getToken()) return;
-
-      // GA4 Real-time + Total Users + Sessions Chart (same as before)
-      await loadGA4Data();
-
-      // Search Console Data
-      await loadSearchConsoleData();
-    }
-
-    // GA4 functions (real-time, total users, sessions chart) - same as previous version
-    async function loadGA4Data() {
-      // ... (copy the GA4 code from previous full version: realtime, total-users, sessionsChart)
-      // For brevity, I'm keeping only new parts here. Add the previous GA4 code if needed.
-    }
-
-    async function loadSearchConsoleData() {
+    async function loadLiveStats() {
       try {
-        const res = await gapi.client.request({
-          path: `https://searchconsole.googleapis.com/webmasters/v3/sites/${encodeURIComponent(GSC_SITE_URL)}/searchAnalytics/query`,
-          method: 'POST',
-          body: {
-            startDate: "2026-03-13",   // 30 days ago (adjust if needed)
-            endDate: "2026-04-12",
-            dimensions: ["query"],
-            rowLimit: 1   // we only need aggregate totals
+        const res = await fetch('/api/vercel-realtime');
+        const data = await res.json();
+
+        document.getElementById('total-views').textContent = Number(data.homeHits || 0).toLocaleString();
+        document.getElementById('unique-visitors').textContent = Number(data.uniqueVisitors || 0).toLocaleString();
+        document.getElementById('active-now').textContent = Number(data.activeNow || 0);
+      } catch (e) { console.error(e); }
+    }
+
+    async function loadChart(period) {
+      currentPeriod = period;
+      updateTabs();
+
+      let query = period === 0 ? 'today' : period === 1 ? '7' : period === 2 ? '30' : 'total';
+
+      try {
+        const res = await fetch(`/api/analytics/chart?period=${query}`);
+        const { labels, views } = await res.json();
+
+        if (chartInstance) chartInstance.destroy();
+
+        chartInstance = new Chart(document.getElementById('viewsChart'), {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Page Views',
+              data: views,
+              borderColor: '#6366f1',
+              backgroundColor: 'rgba(99, 102, 241, 0.08)',
+              borderWidth: 5,
+              tension: 0.4,
+              pointRadius: 6,
+              pointHoverRadius: 9,
+              pointBackgroundColor: '#ffffff',
+              pointBorderWidth: 3
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: {
+              y: { beginAtZero: true, grid: { color: '#e2e8f0' }, ticks: { color: '#64748b' } },
+              x: { grid: { color: '#e2e8f0' }, ticks: { color: '#64748b' } }
+            }
           }
         });
-
-        const row = res.result.rows ? res.result.rows[0] : null;
-        const clicks = row ? row.clicks : 0;
-        const impressions = row ? row.impressions : 0;
-        const ctr = row && impressions > 0 ? (row.ctr * 100).toFixed(2) : 0;
-        const position = row ? row.position.toFixed(1) : 0;
-
-        document.getElementById('search-clicks').textContent = parseInt(clicks).toLocaleString();
-        document.getElementById('search-impressions').textContent = parseInt(impressions).toLocaleString();
-
-        // Optional: You can add more cards for CTR and Position if you want
-        console.log(`GSC → Clicks: ${clicks}, Impressions: ${impressions}, CTR: ${ctr}%, Avg Position: ${position}`);
-      } catch (e) {
-        console.error("Search Console Error:", e);
-        document.getElementById('search-clicks').textContent = "Error";
-        document.getElementById('search-impressions').textContent = "Error";
-      }
+      } catch (e) { console.error(e); }
     }
 
-    // Real-time refresh (GA4)
-    async function refreshRealtime() {
-      // Add your realtime GA4 code here
-      console.log("Refreshing real-time visitors...");
+    function switchPeriod(p) {
+      loadChart(p);
     }
 
+    // Init
     window.onload = () => {
-      initGapi();
-      initTokenClient();
-
-      // Demo values
-      setTimeout(() => {
-        if (document.getElementById('realtime-visitors')) document.getElementById('realtime-visitors').textContent = '142';
-      }, 1500);
+      loadLiveStats();
+      loadChart(1);                    // Start with 7 Days
+      setInterval(loadLiveStats, 8000); // Refresh stats faster
     };
   </script>
 </body>
