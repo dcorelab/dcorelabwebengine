@@ -4,15 +4,9 @@ const session = require('express-session');
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
-// Fix for Vercel Analytics in CommonJS
-const { inject } = require("@vercel/analytics");
-
 const connectDB = require('./app/config/db');
 
 const app = express();
-
-// Initialize Vercel Analytics
-inject();
 
 // Connect to Database
 connectDB();
