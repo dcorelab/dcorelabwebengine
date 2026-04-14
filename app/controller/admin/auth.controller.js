@@ -183,7 +183,7 @@ class AuthController {
       }
 
       const otp = await this.generateOTP();
-      console.log("Login OTP:", otp);
+      // console.log("Login OTP:", otp);
 
       admin.otpHistory.push({
         otp,
@@ -266,7 +266,7 @@ class AuthController {
 
       const loginHistory = admin.loginHistory.slice(-5);
 
-      res.render('admin/dashboard', { admin, loginHistory });
+      res.render('admin/index', { admin, loginHistory });
     } catch (err) {
       console.error(err);
       res.render('admin/error', { message: 'Dashboard access failed.' });
