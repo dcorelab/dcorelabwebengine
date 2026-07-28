@@ -44,6 +44,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Alignment & Responsive Fixes -->
+    <link rel="stylesheet" href="/styles/fixes.css" />
     <!-- Structured Data / Schema Markup (Highly recommended for agencies) -->
     <script type="application/ld+json">
     {
@@ -1750,7 +1753,7 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container-fluid px-4 px-md-5">
+        <div class="container-fluid px-3 px-sm-4 px-md-5">
             <a class="navbar-brand" href="#hero">
                <video src="/asset/logo.mp4" autoplay muted loop  class="video_logo"></video>
             </a>
@@ -1762,8 +1765,9 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
                   <li class="nav-item"><a class="nav-link" href="/"> Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about"> About</a></li>
                     <li class="nav-item"><a class="nav-link" href="/services"> Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/projects"> Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/portfolio"> Portfolio</a></li>
                     <li class="nav-item"><a class="nav-link" href="/blog"> Blog</a></li>
                     <li class="nav-item"><a class="nav-link nav-cta" href="/contactus"> Contact</a></li>
                 </ul>
@@ -2808,6 +2812,12 @@
 </script>
 
 
+
+<!-- Include Chatbot Widget -->
+<%- include('./partials/chatbot-widget') %>
+
+<!-- Include Footer -->
+<%- include('./partials/footer') %>
 
 <script>!function(key) {if (window.reb2b) return;window.reb2b = {loaded: true};var s = document.createElement("script");s.async = true;s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);}("E63P0HZ31POW");</script>
 </body>

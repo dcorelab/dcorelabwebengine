@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/asset/core_lab__2_-removebg-preview.png" type="image/x-icon" />
+    
+    <title><%= title %></title>
+    <meta name="description" content="Get in touch with Dcore Lab. Contact us for inquiries about our SaaS development, digital marketing, and web design services in Kolkata.">
+    <meta name="keywords" content="contact us, get in touch, inquiry, support, kolkata">
+    <meta name="robots" content="index, follow" />
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --primary-light: #F8FAFC;
+            --accent-blue: #3b48f6;
+            --accent-purple: #3470b4;
+            --text-dark: #1E293B;
+            --text-light: #475569;
+            --border-light: #E2E8F0;
+            --shadow: 0 10px 35px rgba(59, 130, 246, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #FFFFFF 50%, #F0F9FF 100%);
+            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ANIMATED DOTTED BACKGROUND */
+        #animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .dot {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.6), rgba(139, 92, 246, 0.3));
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
+            50% { transform: translateY(-50px) translateX(30px); opacity: 1; }
+            100% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
+        }
+
+        /* NAVIGATION */
+        nav.navbar {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--border-light);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        nav.navbar.scrolled {
+            box-shadow: var(--shadow);
+            padding: 0.5rem 0;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .video_logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+        }
+
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 1rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--accent-blue);
+            color: white !important;
+            padding: 0.6rem 1.5rem !important;
+            border-radius: 8px;
+        }
+
+        /* CONTENT */
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-section {
+            padding: 8rem 2rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2.5rem;
+        }
+
+        .info-item {
+            margin-bottom: 2.5rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .info-content h3 {
+            color: var(--text-dark);
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-content p {
+            color: var(--text-light);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .info-content a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .info-content a:hover {
+            color: var(--accent-purple);
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: var(--accent-purple);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <!-- Alignment & Responsive Fixes -->
+    <link rel="stylesheet" href="/styles/fixes.css" />
+
+</head>
+
+<body>
+    <div id="animated-bg"></div>
+    
+    <div class="content-wrapper">
+        <%- include('./partials/navbar') %>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1>Get In Touch</h1>
+            <p>Have a question or ready to start your next project? We'd love to hear from you. Drop us a message!</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section">
+            <div class="contact-container">
+                <!-- Contact Info -->
+                <div class="contact-info fade-in">
+                    <h2 style="margin-bottom: 2rem; font-size: 1.8rem; color: var(--text-dark);">Contact Information</h2>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Address</h3>
+                            <p>Kolkata, West Bengal<br>India</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Phone</h3>
+                            <a href="tel:+918016565951">+91 8016565951</a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Email</h3>
+                            <a href="mailto:d.core.lab.digital@gmail.com">d.core.lab.digital@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="info-content">
+                            <h3>Business Hours</h3>
+                            <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday - Sunday: Closed</p>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/dcorelab" target="_blank" class="social-btn" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://wa.me/918016565951" target="_blank" class="social-btn" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.facebook.com/dcorelab" target="_blank" class="social-btn" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form fade-in">
+                    <h2 style="margin-bottom: 1.5rem; font-size: 1.8rem; color: var(--text-dark);">Send us a Message</h2>
+                    <form id="contactForm" method="POST" action="/send-inquiry">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service" name="service">
+                                <option value="">-- Select Service --</option>
+                                <option value="saas">SaaS Development</option>
+                                <option value="web">Web Design & Development</option>
+                                <option value="digital-marketing">Digital Marketing</option>
+                                <option value="seo">SEO Services</option>
+                                <option value="consulting">Consulting</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section (Optional) -->
+        <section class="section" style="text-align: center;">
+            <h2 style="font-size: 2rem; margin-bottom: 2rem; color: var(--text-dark);">Find Us</h2>
+            <div class="fade-in" style="background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); border: 1px solid var(--border-light); border-radius: 12px; height: 400px; display: flex; align-items: center; justify-content: center; color: var(--text-light); font-size: 1.1rem;">
+                <div>
+                    <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: var(--accent-blue); margin-bottom: 1rem; display: block;"></i>
+                    Map integration coming soon. Located in Kolkata, West Bengal.
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section" style="background: rgba(59, 130, 246, 0.05); border-radius: 12px; margin: 2rem 0;">
+            <h2 style="font-size: 2rem; margin-bottom: 2rem; text-align: center; color: var(--text-dark);">Frequently Asked Questions</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: white; border-radius: 8px; border-left: 4px solid var(--accent-blue);">
+                        <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">How quickly can you start my project?</h4>
+                        <p style="color: var(--text-light); margin: 0;">We typically start within 1-2 weeks depending on project scope and team availability.</p>
+                    </div>
+                    <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: white; border-radius: 8px; border-left: 4px solid var(--accent-blue);">
+                        <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">Do you offer ongoing support?</h4>
+                        <p style="color: var(--text-light); margin: 0;">Yes, we provide maintenance and support packages tailored to your needs.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: white; border-radius: 8px; border-left: 4px solid var(--accent-blue);">
+                        <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">What's your process?</h4>
+                        <p style="color: var(--text-light); margin: 0;">Discovery → Planning → Development → Testing → Deployment → Support</p>
+                    </div>
+                    <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: white; border-radius: 8px; border-left: 4px solid var(--accent-blue);">
+                        <h4 style="color: var(--text-dark); margin-bottom: 0.5rem;">What technology do you use?</h4>
+                        <p style="color: var(--text-light); margin: 0;">Modern stack: React, Node.js, Next.js, AWS, and more based on project needs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animated Background
+        const dotCount = 15;
+        const bgContainer = document.getElementById('animated-bg');
+
+        for (let i = 0; i < dotCount; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.style.left = Math.random() * 100 + '%';
+            dot.style.top = Math.random() * 100 + '%';
+            dot.style.animationDelay = Math.random() * 20 + 's';
+            dot.style.animationDuration = (10 + Math.random() * 20) + 's';
+            bgContainer.appendChild(dot);
+        }
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                // Form will submit normally to /send-inquiry
+                // You can add client-side validation here if needed
+            });
+        }
+
+        // Fade in on scroll
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+<!-- Include Footer -->
+<!-- Include Chatbot Widget -->
+<%- include('./partials/chatbot-widget') %>
+
+<%- include('./partials/footer') %>
+
+</body>
+</html>

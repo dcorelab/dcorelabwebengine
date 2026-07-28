@@ -123,6 +123,8 @@ app.get('/api/analytics/chart', async (req, res) => {
 
 // ====================== OTHER ROUTES ======================
 app.use('/admin', require('./app/routes/admin/index'));
+app.use('/api/admin', require('./app/routes/admin/api.routes'));
+app.use('/api/chatbot', require('./app/routes/chatbot.routes'));
 app.use('/', require('./app/routes/ui/home.controller'));
 
 app.post('/send-inquiry', async (req, res) => { /* your existing email code */ });

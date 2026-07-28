@@ -1,0 +1,339 @@
+<footer class="footer-section">
+  <div class="container py-5">
+    <div class="row mb-5">
+      <!-- Company Info -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="footer-content">
+          <h5 class="footer-title mb-3">About Us</h5>
+          <p id="company-description" class="footer-text">Loading company information...</p>
+          <div class="social-links mt-3" id="social-links">
+            <a href="#" target="_blank" class="social-link facebook" title="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" target="_blank" class="social-link twitter" title="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" target="_blank" class="social-link linkedin" title="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" target="_blank" class="social-link instagram" title="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="footer-content">
+          <h5 class="footer-title mb-3">Quick Links</h5>
+          <ul class="footer-links" id="quick-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/contactus">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="footer-content">
+          <h5 class="footer-title mb-3">Services</h5>
+          <ul class="footer-links" id="services-links">
+            <li><a href="/services">Web Development</a></li>
+            <li><a href="/services">Mobile Apps</a></li>
+            <li><a href="/services">Design</a></li>
+            <li><a href="/services">Consulting</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-lg-3 col-md-6 mb-4">
+        <div class="footer-content">
+          <h5 class="footer-title mb-3">Contact Us</h5>
+          <div class="footer-contact">
+            <p class="mb-2">
+              <i class="fas fa-envelope me-2"></i>
+              <a href="mailto:info@example.com" id="footer-email">info@example.com</a>
+            </p>
+            <p class="mb-2">
+              <i class="fas fa-phone me-2"></i>
+              <a href="tel:+1234567890" id="footer-phone">+1 (234) 567-890</a>
+            </p>
+            <p>
+              <i class="fas fa-map-marker-alt me-2"></i>
+              <span id="footer-address">Your Address Here</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <hr class="my-4">
+
+    <!-- Bottom Footer -->
+    <div class="row align-items-center">
+      <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+        <p class="footer-copyright" id="copyright-text">
+          &copy; 2024 Dcore Lab. All rights reserved.
+        </p>
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <a href="#top" class="scroll-to-top">
+          <i class="fas fa-arrow-up"></i> Back to Top
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #e0e0e0;
+    padding: 60px 0 20px;
+    margin-top: 100px;
+    border-top: 2px solid #0f3460;
+  }
+
+  .footer-content {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  .footer-title {
+    color: #00d4ff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+
+  .footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, #00d4ff, transparent);
+  }
+
+  .footer-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #b0b0b0;
+  }
+
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-links a {
+    color: #b0b0b0;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .footer-links a:before {
+    content: '→';
+    margin-right: 0.5rem;
+    color: #00d4ff;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .footer-links a:hover {
+    color: #00d4ff;
+    transform: translateX(5px);
+  }
+
+  .footer-links a:hover:before {
+    opacity: 1;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 212, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00d4ff;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: 1px solid #00d4ff;
+  }
+
+  .social-link:hover {
+    background: #00d4ff;
+    color: #1a1a2e;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+  }
+
+  .footer-contact p {
+    font-size: 0.95rem;
+    color: #b0b0b0;
+    margin: 0;
+  }
+
+  .footer-contact a {
+    color: #00d4ff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .footer-contact a:hover {
+    color: #fff;
+  }
+
+  .footer-copyright {
+    color: #808080;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .scroll-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #00d4ff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+  }
+
+  .scroll-to-top:hover {
+    color: #fff;
+    transform: translateY(-2px);
+  }
+
+  hr {
+    border-color: rgba(0, 212, 255, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .footer-section {
+      margin-top: 60px;
+      padding: 40px 0 15px;
+    }
+
+    .footer-title {
+      font-size: 1rem;
+    }
+
+    .footer-text {
+      font-size: 0.9rem;
+    }
+
+    .footer-content {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .social-links {
+      justify-content: center;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  // Load footer data from API
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const response = await fetch('/api/admin/public/footer');
+      const result = await response.json();
+      
+      if (result.success && result.data) {
+        const footer = result.data;
+
+        // Set company description
+        document.getElementById('company-description').textContent = footer.companyDescription || 'Building digital solutions for your business.';
+
+        // Set social links
+        const socialLinks = document.getElementById('social-links');
+        if (footer.socialLinks) {
+          socialLinks.innerHTML = '';
+          if (footer.socialLinks.facebook) {
+            socialLinks.innerHTML += `<a href="${footer.socialLinks.facebook}" target="_blank" class="social-link facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>`;
+          }
+          if (footer.socialLinks.twitter) {
+            socialLinks.innerHTML += `<a href="${footer.socialLinks.twitter}" target="_blank" class="social-link twitter" title="Twitter"><i class="fab fa-twitter"></i></a>`;
+          }
+          if (footer.socialLinks.linkedin) {
+            socialLinks.innerHTML += `<a href="${footer.socialLinks.linkedin}" target="_blank" class="social-link linkedin" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>`;
+          }
+          if (footer.socialLinks.instagram) {
+            socialLinks.innerHTML += `<a href="${footer.socialLinks.instagram}" target="_blank" class="social-link instagram" title="Instagram"><i class="fab fa-instagram"></i></a>`;
+          }
+        }
+
+        // Set quick links
+        if (footer.quickLinks && footer.quickLinks.length > 0) {
+          const quickLinksUl = document.getElementById('quick-links');
+          quickLinksUl.innerHTML = footer.quickLinks.map(link => 
+            `<li><a href="${link.url}">${link.title}</a></li>`
+          ).join('');
+        }
+
+        // Set services links
+        if (footer.services && footer.services.length > 0) {
+          const servicesUl = document.getElementById('services-links');
+          servicesUl.innerHTML = footer.services.map(service => 
+            `<li><a href="${service.url}">${service.title}</a></li>`
+          ).join('');
+        }
+
+        // Set contact info
+        if (footer.email) document.getElementById('footer-email').href = `mailto:${footer.email}`;
+        if (footer.email) document.getElementById('footer-email').textContent = footer.email;
+        if (footer.phone) document.getElementById('footer-phone').href = `tel:${footer.phone}`;
+        if (footer.phone) document.getElementById('footer-phone').textContent = footer.phone;
+        if (footer.address) document.getElementById('footer-address').textContent = footer.address;
+
+        // Set copyright text
+        document.getElementById('copyright-text').textContent = footer.copyrightText || '© 2024 Dcore Lab. All rights reserved.';
+      }
+    } catch (error) {
+      console.error('Error loading footer data:', error);
+    }
+
+    // Scroll to top functionality
+    document.querySelector('.scroll-to-top')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>

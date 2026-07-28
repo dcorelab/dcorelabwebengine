@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/asset/core_lab__2_-removebg-preview.png" type="image/x-icon" />
+    
+    <title><%= title %></title>
+    <meta name="description" content="Read insightful articles and case studies about SaaS development, digital marketing, web design, and technology trends from Dcore Lab experts.">
+    <meta name="keywords" content="blog, articles, tech insights, digital marketing tips, saas development, web development">
+    <meta name="robots" content="index, follow" />
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <style>
+        :root {
+            --primary-light: #F8FAFC;
+            --accent-blue: #3b48f6;
+            --accent-purple: #3470b4;
+            --accent-cyan: #06B6D4;
+            --text-dark: #1E293B;
+            --text-light: #475569;
+            --border-light: #E2E8F0;
+            --shadow: 0 10px 35px rgba(59, 130, 246, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-light) 0%, #FFFFFF 50%, #F0F9FF 100%);
+            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ANIMATED DOTTED BACKGROUND */
+        #animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .dot {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.6), rgba(139, 92, 246, 0.3));
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
+            50% { transform: translateY(-50px) translateX(30px); opacity: 1; }
+            100% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
+        }
+
+        /* NAVIGATION */
+        nav.navbar {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid var(--border-light);
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        nav.navbar.scrolled {
+            box-shadow: var(--shadow);
+            padding: 0.5rem 0;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .video_logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+        }
+
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 1rem;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--accent-blue);
+            color: white !important;
+            padding: 0.6rem 1.5rem !important;
+            border-radius: 8px;
+        }
+
+        /* CONTENT */
+        .content-wrapper {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-section {
+            padding: 8rem 2rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-section p {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .blog-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+        }
+
+        .blog-category {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .blog-date {
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .blog-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .blog-author {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .author-avatar {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .author-info {
+            font-size: 0.85rem;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .author-title {
+            color: var(--text-light);
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-widget {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .sidebar-widget h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-box input {
+            flex-grow: 1;
+            padding: 0.6rem;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+        }
+
+        .search-box button {
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-box button:hover {
+            background: var(--accent-purple);
+        }
+
+        .category-list,
+        .tag-list {
+            list-style: none;
+        }
+
+        .category-list li,
+        .tag-list li {
+            margin-bottom: 0.8rem;
+        }
+
+        .category-list a,
+        .tag-list a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .tag-list a {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tag-list a:hover {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        .category-list a:hover {
+            color: var(--accent-blue);
+            padding-left: 0.5rem;
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+        }
+    </style>
+    <!-- Alignment & Responsive Fixes -->
+    <link rel="stylesheet" href="/styles/fixes.css" />
+
+</head>
+
+<body>
+    <div id="animated-bg"></div>
+    
+    <div class="content-wrapper">
+        <%- include('./partials/navbar') %>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1>Our Blog</h1>
+            <p>Insights, tips, and best practices on SaaS development, digital marketing, and tech trends.</p>
+        </section>
+
+        <!-- Blog Section -->
+        <section class="section">
+            <div class="blog-container">
+                <!-- Blog Grid -->
+                <div class="blog-grid fade-in">
+                    <!-- Blog Post 1 -->
+                    <div class="blog-card">
+                        <div class="blog-image"><i class="fas fa-rocket"></i></div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">SaaS</span>
+                                <span class="blog-date"><i class="fas fa-calendar"></i> Mar 15, 2024</span>
+                            </div>
+                            <h3 class="blog-title">Building Scalable SaaS Applications: A Complete Guide</h3>
+                            <p class="blog-excerpt">Learn the best practices and architecture patterns for building scalable SaaS applications that can handle millions of users.</p>
+                            <div class="blog-author">
+                                <div class="author-avatar">AK</div>
+                                <div class="author-info">
+                                    <div class="author-name">Alex Kumar</div>
+                                    <div class="author-title">Tech Lead</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 2 -->
+                    <div class="blog-card">
+                        <div class="blog-image"><i class="fas fa-search"></i></div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">SEO</span>
+                                <span class="blog-date"><i class="fas fa-calendar"></i> Mar 12, 2024</span>
+                            </div>
+                            <h3 class="blog-title">2024 SEO Trends: What You Need to Know</h3>
+                            <p class="blog-excerpt">Explore the latest SEO trends for 2024 including AI-powered optimization, core web vitals, and emerging ranking factors.</p>
+                            <div class="blog-author">
+                                <div class="author-avatar">SM</div>
+                                <div class="author-info">
+                                    <div class="author-name">Sarah Malik</div>
+                                    <div class="author-title">SEO Specialist</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 3 -->
+                    <div class="blog-card">
+                        <div class="blog-image"><i class="fas fa-paint-brush"></i></div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">Design</span>
+                                <span class="blog-date"><i class="fas fa-calendar"></i> Mar 10, 2024</span>
+                            </div>
+                            <h3 class="blog-title">Web Design Principles for Maximum Conversions</h3>
+                            <p class="blog-excerpt">Discover the key design principles that help maximize user engagement and conversion rates on your website.</p>
+                            <div class="blog-author">
+                                <div class="author-avatar">JP</div>
+                                <div class="author-info">
+                                    <div class="author-name">Jiya Patel</div>
+                                    <div class="author-title">Design Lead</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 4 -->
+                    <div class="blog-card">
+                        <div class="blog-image"><i class="fas fa-code"></i></div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">Development</span>
+                                <span class="blog-date"><i class="fas fa-calendar"></i> Mar 8, 2024</span>
+                            </div>
+                            <h3 class="blog-title">React Performance Optimization Techniques</h3>
+                            <p class="blog-excerpt">Master advanced React optimization techniques to improve your application's performance and user experience.</p>
+                            <div class="blog-author">
+                                <div class="author-avatar">RJ</div>
+                                <div class="author-info">
+                                    <div class="author-name">Rajesh Joshi</div>
+                                    <div class="author-title">Senior Developer</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 5 -->
+                    <div class="blog-card">
+                        <div class="blog-image"><i class="fas fa-chart-line"></i></div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">Marketing</span>
+                                <span class="blog-date"><i class="fas fa-calendar"></i> Mar 5, 2024</span>
+                            </div>
+                            <h3 class="blog-title">Content Marketing Strategy for B2B SaaS</h3>
+                            <p class="blog-excerpt">Learn effective content marketing strategies specifically designed for B2B SaaS companies to generate qualified leads.</p>
+                            <div class="blog-author">
+                                <div class="author-avatar">KS</div>
+                                <div class="author-info">
+                                    <div class="author-name">Kavya Singh</div>
+                                    <div class="author-title">Content Manager</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Post 6 -->
+                    <div class="blog-card">
+                        <div class="blog-image"><i class="fas fa-shield-alt"></i></div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="blog-category">Security</span>
+                                <span class="blog-date"><i class="fas fa-calendar"></i> Mar 1, 2024</span>
+                            </div>
+                            <h3 class="blog-title">Web Security Best Practices Every Developer Should Know</h3>
+                            <p class="blog-excerpt">Essential security practices to protect your web applications from common vulnerabilities and attacks.</p>
+                            <div class="blog-author">
+                                <div class="author-avatar">MK</div>
+                                <div class="author-info">
+                                    <div class="author-name">Mehul Kumar</div>
+                                    <div class="author-title">Security Expert</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="sidebar fade-in">
+                    <!-- Search -->
+                    <div class="sidebar-widget">
+                        <h3>Search Articles</h3>
+                        <div class="search-box">
+                            <input type="text" placeholder="Search...">
+                            <button><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="sidebar-widget">
+                        <h3>Categories</h3>
+                        <ul class="category-list">
+                            <li><a href="#">SaaS Development</a></li>
+                            <li><a href="#">Web Design</a></li>
+                            <li><a href="#">Digital Marketing</a></li>
+                            <li><a href="#">SEO & Growth</a></li>
+                            <li><a href="#">Tech Tips</a></li>
+                            <li><a href="#">Security</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Tags -->
+                    <div class="sidebar-widget">
+                        <h3>Popular Tags</h3>
+                        <div class="tag-list">
+                            <a href="#">React</a>
+                            <a href="#">Node.js</a>
+                            <a href="#">SaaS</a>
+                            <a href="#">SEO</a>
+                            <a href="#">Performance</a>
+                            <a href="#">Security</a>
+                            <a href="#">UX Design</a>
+                            <a href="#">Analytics</a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="section" style="text-align: center; background: rgba(59, 130, 246, 0.05); border-radius: 12px; margin-top: 3rem;">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem; color: var(--text-dark);">Subscribe to Our Newsletter</h2>
+            <p style="color: var(--text-light); margin-bottom: 2rem;">Get the latest tech insights and tips delivered to your inbox.</p>
+            <div style="max-width: 500px; margin: 0 auto; display: flex; gap: 0.5rem;">
+                <input type="email" placeholder="Enter your email" style="flex-grow: 1; padding: 0.8rem; border: 1px solid var(--border-light); border-radius: 8px; font-family: 'Inter', sans-serif;">
+                <button style="background: var(--accent-blue); color: white; border: none; padding: 0.8rem 2rem; border-radius: 8px; font-weight: 600; cursor: pointer;">Subscribe</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animated Background
+        const dotCount = 15;
+        const bgContainer = document.getElementById('animated-bg');
+
+        for (let i = 0; i < dotCount; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.style.left = Math.random() * 100 + '%';
+            dot.style.top = Math.random() * 100 + '%';
+            dot.style.animationDelay = Math.random() * 20 + 's';
+            dot.style.animationDuration = (10 + Math.random() * 20) + 's';
+            bgContainer.appendChild(dot);
+        }
+
+        // Navigation scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Fade in on scroll
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+<!-- Include Footer -->
+<!-- Include Chatbot Widget -->
+<%- include('./partials/chatbot-widget') %>
+
+<%- include('./partials/footer') %>
+
+</body>
+</html>
