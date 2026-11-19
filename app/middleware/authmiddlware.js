@@ -8,8 +8,7 @@ exports.requireAdmin = async (req, res, next) => {
     const token = req.cookies && req.cookies[cookieName];
     if (!token) return req.accepts('html') ? res.redirect('/admin/login') : res.status(401).json({ error: 'Unauthorized' });
     const claims = jwt.verify(token, secret(), { issuer: 'dcorelab-admin', audience: 'dcorelab-admin' });
-    await connectDB();
-    const admin = await Admin.findById(claims.sub);
+    await connectDB(); const admin = await Admin.findById(claims.sub);
     if (!admin || admin.sessionVersion !== claims.sv || admin.role !== claims.role) throw new Error('Invalid session');
     req.admin = admin;
     if (!['GET', 'HEAD', 'OPTIONS'].includes(req.method) && !originOK(req)) return res.status(403).json({ error: 'Invalid request origin' });

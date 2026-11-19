@@ -1,4 +1,4 @@
-# Runtime secrets: never commit local environment files.
+# Runtime secrets: do not commit local env files.
 .env
 .env.*
 !.env.example

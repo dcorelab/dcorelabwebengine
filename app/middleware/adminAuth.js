@@ -22,34 +22,32 @@ async function recordAttempt(keyValue, failed) {
   return !row.lockedUntil;
 }
 exports.passwordValid = passwordValid;
-exports.loginPage = (req, res) => res.render('admin/login', { error: null });
+exports.cookieName = COOKIE;
+exports.originOK = originOK;
+exports.loginPage = (_req, res) => res.render('admin/login', { error: null });
 exports.login = async (req, res) => {
-  await connectDB();
-  const hashedIp = ipKey(req);
-  let lock = await LoginAttempt.findOne({ key: hashedIp });
-  if (lock && lock.lockedUntil > new Date()) return res.status(429).render('admin/login', { error: 'Invalid credentials' });
-  const email = String(req.body.email || '').trim().toLowerCase();
-  const password = String(req.body.password || '');
-  const user = await Admin.findOne({ email }).select('+passwordHash');
-  const valid = user && await bcrypt.compare(password, user.passwordHash);
-  if (!valid) {
-    await recordAttempt(hashedIp, true);
-    await AuditLog.create({ actor: email || 'unknown', action: 'login_failed', entity: 'user' });
-    return res.status(401).render('admin/login', { error: 'Invalid credentials' });
-  }
-  await recordAttempt(hashedIp, false);
-  const token = jwt.sign({ sub: user.id, role: user.role, sv: user.sessionVersion }, key(), { expiresIn: '8h', issuer: 'dcorelab-admin', audience: 'dcorelab-admin' });
-  res.cookie(COOKIE, token, cookieOptions());
-  user.lastLoginAt = new Date();
-  user.loginHistory.push({ time: new Date(), device: String(req.get('user-agent') || '').slice(0, 300), status: 'success' });
-  await user.save();
-  await AuditLog.create({ actor: user.email, action: 'login', entity: 'user', entityId: user.id });
-  res.redirect('/admin');
+  try {
+    if (!originOK(req)) return res.status(403).render('admin/login', { error: 'Invalid credentials' });
+    await connectDB();
+    const ipHash = ipKey(req); const existing = await LoginAttempt.findOne({ key: ipHash });
+    if (existing && existing.lockedUntil > new Date()) return res.status(429).render('admin/login', { error: 'Invalid credentials' });
+    const email = String(req.body.email || '').trim().toLowerCase(); const password = String(req.body.password || '');
+    const user = await Admin.findOne({ email }).select('+passwordHash');
+    const valid = user ? await bcrypt.compare(password, user.passwordHash) : false;
+    if (!valid) {
+      await recordAttempt(ipHash, true);
+      await AuditLog.create({ actor: email || 'unknown', action: 'login_failed', entity: 'user' });
+      return res.status(401).render('admin/login', { error: 'Invalid credentials' });
+    }
+    await recordAttempt(ipHash, false);
+    const token = jwt.sign({ sub: user.id, role: user.role, sv: user.sessionVersion }, key(), { expiresIn: '8h', issuer: 'dcorelab-admin', audience: 'dcorelab-admin' });
+    res.cookie(COOKIE, token, cookieOptions());
+    user.lastLoginAt = new Date(); user.loginHistory.push({ time: new Date(), device: String(req.get('user-agent') || '').slice(0, 300), status: 'success' });
+    await user.save(); await AuditLog.create({ actor: user.email, action: 'login', entity: 'user', entityId: user.id });
+    res.redirect('/admin');
+  } catch (_) { res.status(500).render('admin/login', { error: 'Invalid credentials' }); }
 };
 exports.logout = async (req, res) => {
   if (req.admin) { await Admin.updateOne({ _id: req.admin._id }, { $inc: { sessionVersion: 1 } }); await AuditLog.create({ actor: req.admin.email, action: 'logout', entity: 'user', entityId: req.admin.id }); }
-  res.clearCookie(COOKIE, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'strict', path: '/' });
-  res.redirect('/admin/login');
+  res.clearCookie(COOKIE, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'strict', path: '/' }); res.redirect('/admin/login');
 };
-exports.cookieName = COOKIE;
-exports.originOK = originOK;
