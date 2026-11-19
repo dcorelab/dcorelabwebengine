@@ -11,6 +11,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: false, limit: '20kb' }));
 app.use(express.json({ limit: '20kb' }));
+app.use(require('cookie-parser')());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
@@ -20,7 +21,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Keep the existing Mongo-backed public website, but fail safely if its DB is unavailable.
+// Connection is cached by app/config/db.js for warm serverless instances.
 connectDB().catch(() => {});
 
 function visitorHash(req) {
@@ -42,7 +43,7 @@ app.post('/api/track', async (req, res) => {
   } catch (_) { res.sendStatus(204); }
 });
 
-app.use('/admin', require('./app/routes/admin'));
+app.use('/admin', require('./app/routes/admin/index'));
 app.use('/api/admin', require('./app/routes/admin/api'));
 app.use('/', require('./app/routes/ui/home.controller'));
 app.post('/api/contact', async (req, res) => {
@@ -50,7 +51,7 @@ app.post('/api/contact', async (req, res) => {
     const { name, email, phone = '', company = '', service = '', message } = req.body || {};
     if (![name, email, message].every(v => typeof v === 'string' && v.trim()) || name.length > 120 || email.length > 254 || message.length > 5000) return res.status(400).json({ error: 'Please provide valid contact details.' });
     const inquiry = await Inquiry.create({ name: name.trim(), email: email.trim().toLowerCase(), phone: String(phone).slice(0, 50), company: String(company).slice(0, 120), service: String(service).slice(0, 120), message: message.trim(), status: 'New' });
-    // Persist first so an email-provider outage never loses an inquiry.
+    // Persist first, so an email-provider outage never loses the lead.
     if (process.env.FROM_MAIL && process.env.GMAIL_APP_PASSWORD && process.env.ADMIN_EMAIL) {
       try {
         const nodemailer = require('nodemailer');

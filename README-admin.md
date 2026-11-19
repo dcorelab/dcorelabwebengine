@@ -1,6 +1,6 @@
 # Secure admin foundation
 
-This application uses Express and EJS (not Next.js), so it does not support Next.js ISR or `revalidatePath`/`revalidateTag`. Public routes should read MongoDB-backed content at request time; cache invalidation can be added if a public caching layer is introduced.
+This application uses Express and EJS rather than Next.js; Next.js ISR APIs (`revalidatePath` / `revalidateTag`) do not apply. Public pages should read MongoDB-backed content at request time, or be migrated to Next.js before relying on ISR.
 
 ## Required environment
 - `MONGO_URI`: MongoDB Atlas connection string
@@ -12,10 +12,6 @@ This application uses Express and EJS (not Next.js), so it does not support Next
 
 Create a strong initial password (12+ characters, upper/lowercase, number and symbol), then run `npm run seed:admin`. The command refuses to create an owner when one already exists. Remove `ADMIN_PASSWORD` from the environment after seeding. Never commit secrets.
 
-## Current admin routes
-- `/admin/login`, `/admin` dashboard, `/admin/inquiries`, `/admin/projects`, `/admin/testimonials`, `/admin/services`, `/admin/settings`, `/admin/account`, `/admin/audit-log`
-- `/api/admin/*` is authenticated; owner/editor permissions are enforced in the route handlers.
-- `/api/track` stores only a salted SHA-256 visitor hash, skips bots, Do Not Track and admin paths.
-- `/api/contact` persists inquiries before attempting notification email.
+Admin sessions expire after 8 hours, use an httpOnly SameSite=Strict cookie, and are invalidated on logout/password change by rotating a database session version. Admin endpoints are protected by authentication and role checks. `/api/track` stores only a salted SHA-256 visitor hash, skips bots, Do Not Track and admin paths. `/api/contact` persists inquiries before attempting notification email.
 
-Admin sessions expire after 8 hours, use an httpOnly SameSite=Strict cookie, and are invalidated on logout/password change by rotating a database session version. Login attempts are limited to five per IP per 15-minute window. Do not expose this service publicly until environment values are configured and the security and deployment checklist is verified.
+This is a starter integration, not the complete requested feature set: Cloudinary uploads, TOTP, chat-log controls, full CRUD editing UX, zod schemas, and Vercel serverless validation still need implementation and testing. Do not deploy publicly until those security and deployment checks are complete.
