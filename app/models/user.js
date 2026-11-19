@@ -1,32 +1,13 @@
-const mongoose = require("mongoose")
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
 
-const OtpSchema = new Schema({
-  otp: String,
-  expiresAt: Date,
-  verified: { type: Boolean, default: false },
-  createdAt: { type: Date, default: Date.now },
-})
-
-const LoginLogSchema = new Schema({
-  time: { type: Date, default: Date.now },
-  ipAddress: String,
-  device: String,
-  status: { type: String, enum: ["success", "failed"], default: "success" },
-  username: String,
-})
-
-const AdminSchema = new Schema({
-  username: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
-  role: { type: String, enum: ["admin"], default: "admin" },
-  password: { type: String, required: true },
-  isVerified: { type: Boolean, default: false },
-  loginHistory: [LoginLogSchema],
-  otpHistory: [OtpSchema],
-  resetPasswordToken: String,
-  resetPasswordExpires: Date,
-  createdAt: { type: Date, default: Date.now },
-})
-
-module.exports = mongoose.model("Admin", AdminSchema)
+const UserSchema = new mongoose.Schema({
+  username: { type: String, trim: true, maxlength: 80 },
+  email: { type: String, required: true, unique: true, lowercase: true, trim: true, index: true },
+  passwordHash: { type: String, required: true, select: false },
+  role: { type: String, enum: ['owner', 'editor'], default: 'owner', required: true },
+  sessionVersion: { type: Number, default: 0 },
+  totpSecret: { type: String, select: false },
+  lastLoginAt: Date,
+  loginHistory: [{ time: { type: Date, default: Date.now }, device: String, status: { type: String, enum: ['success', 'failed'] } }]
+}, { timestamps: true });
+module.exports = mongoose.models.Admin || mongoose.model('Admin', UserSchema);
