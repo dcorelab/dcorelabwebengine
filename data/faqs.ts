@@ -1,2 +1,10 @@
 import type { FAQ } from "@/types/content";
-export const faqs: FAQ[] = [];
+export const faqs: FAQ[] = [
+  { id: "pricing", question: "How much does a project cost?", answer: "The cost depends on what needs to be built, the integrations involved, and the agreed scope. After an initial conversation, you receive a written scope so the work and its cost are clear before it starts.", published: true },
+  { id: "timeline", question: "How long will my project take?", answer: "Timing depends on the work and the information or access available. We agree milestones and a practical schedule in the written scope rather than promising a timeline before understanding the project.", published: true },
+  { id: "ownership", question: "Who owns the code and accounts?", answer: "Your project code, advertising accounts, and business data stay yours. Account access and handover expectations are discussed and written down before work begins.", published: true },
+  { id: "remote", question: "Can we work together if I am in another part of India?", answer: "Yes. Dcore Lab is based in West Bengal and can work remotely with businesses elsewhere in India. We can discuss the best way to communicate during the initial call.", published: true },
+  { id: "support", question: "Can you help after launch?", answer: "Post-launch support can be discussed as part of your project scope. The support needed and how it will work should be agreed in writing before the project starts.", published: true },
+  { id: "tracking", question: "How can server-side tracking help my marketing?", answer: "Server-side tracking can send selected conversion events from your server to platforms such as Meta or Google. It can complement browser tracking and help you build a clearer measurement setup; the result depends on your implementation, consent requirements, and platform configuration.", published: true },
+  { id: "start", question: "What do you need from me to get started?", answer: "A short description of the challenge, what you would like to achieve, and any relevant existing site, system, or account details are a useful start. Do not send passwords in an initial message; access can be arranged safely later if needed.", published: true },
+];

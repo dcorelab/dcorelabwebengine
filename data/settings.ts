@@ -8,4 +8,7 @@ export const settings: Settings = {
   phone: "+91 80165 65951",
   email: "d.core.lab.digital@gmail.com",
   businessHours: "Mon-Fri 9:00-18:00 IST",
+  whatsappNumber: "918016565951",
+  availabilityLabel: "Available for projects ✦",
+  trustSignals: ["Founder-led", "Based in West Bengal", "Replies within 24 hours", "Written scope before work starts"],
 };

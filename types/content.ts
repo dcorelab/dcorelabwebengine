@@ -12,5 +12,6 @@ export type Model3D = {
 };
 export type Settings = {
   siteName: string; tagline: string; description: string; founderName: string; address: string;
-  phone: string; email: string; businessHours: string;
+  phone: string; email: string; businessHours: string; whatsappNumber: string;
+  availabilityLabel: string; trustSignals: string[];
 };
