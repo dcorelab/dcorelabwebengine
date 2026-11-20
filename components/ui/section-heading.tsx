@@ -1,0 +1,3 @@
+import type { ReactNode } from "react";
+type Props = { eyebrow?: string; title: string; description?: string; align?: "left" | "center"; children?: ReactNode };
+export function SectionHeading({ eyebrow, title, description, align = "left", children }: Props) { return <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>{eyebrow && <p className="font-mono text-xs uppercase tracking-[.2em] text-lilac">{eyebrow}</p>}<h2 className="mt-3 font-heading text-3xl font-semibold tracking-tight sm:text-5xl">{title}</h2>{description && <p className="mt-4 text-base leading-7 text-muted sm:text-lg">{description}</p>}{children}</div>; }

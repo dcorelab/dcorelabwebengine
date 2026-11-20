@@ -1,14 +1,6 @@
-import { getSettings } from "@/lib/content";
-
-export async function Footer() {
-  const settings = await getSettings();
-  return (
-    <footer className="border-t border-white/10 bg-ink px-6 py-10 text-sm text-muted">
-      <div className="mx-auto flex max-w-7xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
-        <span className="font-semibold text-white">Dcore Lab</span>
-        <span>{settings.address}</span>
-        <span>© {new Date().getFullYear()} Dcore Lab</span>
-      </div>
-    </footer>
-  );
-}
+"use client";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+const groups = [{ title: "Explore", links: [["Services", "#services"], ["Work", "#work"], ["Process", "#process"], ["Pricing", "#pricing"]] }, { title: "Company", links: [["About", "#about"], ["Trust", "/trust"], ["Credits", "/credits"], ["Blog", "#blog"]] }];
+export function Footer() { const [disabled, setDisabled] = useState(false); useEffect(() => { setDisabled(localStorage.getItem("dcore-disable-3d") === "true"); }, []); function toggle() { const value = !disabled; setDisabled(value); localStorage.setItem("dcore-disable-3d", String(value)); window.dispatchEvent(new Event("dcore-3d-toggle")); } return <footer className="section-dark border-t border-white/10 px-5 py-14 sm:px-8"><div className="mx-auto max-w-7xl"><div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4"><div><Link href="/" className="font-heading text-2xl font-bold">Dcore <span className="text-gradient">Lab</span></Link><p className="mt-4 max-w-xs text-sm leading-6 text-muted">Founder-led engineering and data-driven marketing from Bankura, West Bengal.</p></div>{groups.map((group) => <div key={group.title}><h2 className="font-mono text-xs uppercase tracking-widest text-muted">{group.title}</h2><ul className="mt-4 space-y-3">{group.links.map(([text, href]) => <li key={text}><Link href={href} className="text-sm hover:text-lilac">{text}</Link></li>)}</ul></div>)}<div><h2 className="font-mono text-xs uppercase tracking-widest text-muted">Contact</h2><div className="mt-4 space-y-3 text-sm"><a href="tel:+918016565951" className="block">+91 80165 65951</a><a href="mailto:d.core.lab.digital@gmail.com" className="block break-all">d.core.lab.digital@gmail.com</a><p>Mon-Fri 9:00-18:00 IST</p></div></div></div><div className="mt-10 flex flex-col gap-5 border-t border-white/10 pt-5 text-xs text-muted sm:flex-row sm:items-center sm:justify-between"><div className="flex flex-wrap gap-4"><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><button onClick={toggle} className="inline-flex items-center gap-1" aria-pressed={disabled}>{disabled ? "Enable" : "Disable"} 3D effects <ArrowUpRight size={12}/></button></div><p>© {new Date().getFullYear()} Dcore Lab. All rights reserved.</p></div></div></footer>; }

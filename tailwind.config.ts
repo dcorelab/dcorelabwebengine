@@ -1,31 +1,23 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        ink: "#07040F",
-        void: "#0D0820",
-        plum: "#1A1033",
-        royal: "#7C3AED",
-        violet: "#8B5CF6",
-        lilac: "#C4B5FD",
-        orchid: "#D946EF",
-        champagne: "#E6C36A",
-        mist: "#F6F3FF",
-        muted: "#A79FC4",
-        "text-dark": "#E9E5F5",
-        "text-light": "#1A1033",
+        ink: "var(--ink)", void: "var(--void)", plum: "var(--plum)", royal: "var(--royal)",
+        violet: "var(--violet)", lilac: "var(--lilac)", orchid: "var(--orchid)", gold: "var(--gold)",
+        white: "var(--white)", mist: "var(--mist)", "text-dark": "var(--text-dark)",
+        muted: "var(--muted)", "text-light": "var(--text-light)",
       },
-      borderRadius: { "4xl": "28px" },
-      boxShadow: { glow: "0 18px 60px rgba(124,58,237,.22)" },
+      fontFamily: {
+        heading: ["var(--font-heading)", "sans-serif"], body: ["var(--font-body)", "sans-serif"],
+        mono: ["var(--font-mono)", "monospace"],
+      },
+      boxShadow: { glow: "0 12px 40px rgb(124 58 237 / 30%)" },
+      borderRadius: { "4xl": "2rem" },
     },
   },
   plugins: [],
 };
-
 export default config;
