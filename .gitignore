@@ -1,5 +1,13 @@
-# Runtime secrets: do not commit local env files.
+# Runtime secrets
 .env
 .env.*
 !.env.example
+
+# Dependencies and build output
 node_modules/
+.next/
+out/
+
+# OS/editor files
+.DS_Store
+*.log
