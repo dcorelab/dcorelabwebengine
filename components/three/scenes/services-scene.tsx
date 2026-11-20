@@ -1,0 +1,5 @@
+"use client";
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
+export function ServicesScene({ progress = 0 }: { progress?: number }) { const group = useRef<THREE.Group>(null); useFrame(({ clock }) => { if (group.current) { group.current.rotation.y = clock.elapsedTime * .12; group.current.position.y = Math.sin(clock.elapsedTime * .4) * .08; } }); const scale = Math.max(0, Math.min(1, progress)); return <group ref={group}><ambientLight intensity={.8} />{Array.from({ length: 7 }, (_, index) => { const x = (index - 3) * .42; const height = .35 + index * .14; const barHeight = height * (1 + scale * .8); return <mesh key={index} position={[x, (barHeight - .35) / 2, 0]}><boxGeometry args={[.16, barHeight, .16]} /><meshStandardMaterial color={index % 2 ? "#8B5CF6" : "#D946EF"} emissive="#7C3AED" emissiveIntensity={.5 + scale * .7} metalness={.3} roughness={.35} /></mesh>; })}<mesh rotation={[Math.PI / 2, 0, 0]}><torusGeometry args={[1.8, .012, 8, 100]} /><meshBasicMaterial color="#C4B5FD" transparent opacity={.6} /></mesh></group>; }

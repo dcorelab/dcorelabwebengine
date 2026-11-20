@@ -1,5 +1,4 @@
 import type { Settings } from "@/types/content";
-
 export const settings: Settings = {
   siteName: "Dcore Lab",
   tagline: "Architecting Systems. Engineering Growth.",

@@ -1,0 +1,3 @@
+"use client";
+import { Float } from "@react-three/drei";
+export function AmbientScene({ variant = "process" }: { variant?: "process" | "contact" }) { const color = variant === "contact" ? "#D946EF" : "#8B5CF6"; return <><ambientLight intensity={.8} /><Float speed={1.2} rotationIntensity={.25} floatIntensity={.55}><mesh><icosahedronGeometry args={[.65, 1]} /><meshStandardMaterial color={color} emissive={color} emissiveIntensity={.8} wireframe /></mesh></Float><Float speed={.7} rotationIntensity={.35} floatIntensity={.8}><mesh position={[1.2, -.5, -1]}><octahedronGeometry args={[.28, 0]} /><meshStandardMaterial color="#C4B5FD" emissive="#7C3AED" emissiveIntensity={.6} /></mesh></Float></>; }

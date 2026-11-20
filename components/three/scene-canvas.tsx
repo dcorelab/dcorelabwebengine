@@ -1,0 +1,7 @@
+"use client";
+import { Canvas } from "@react-three/fiber";
+import { PerformanceMonitor, View } from "@react-three/drei";
+import { useEffect, useState } from "react";
+function VisibilityPause() { const [visible, setVisible] = useState(true); useEffect(() => { const update = () => setVisible(!document.hidden); document.addEventListener("visibilitychange", update); return () => document.removeEventListener("visibilitychange", update); }, []); return <group visible={visible} />; }
+export function SceneCanvas() { const [quality, setQuality] = useState(1); const [reduced, setReduced] = useState(false); useEffect(() => { const media = window.matchMedia("(prefers-reduced-motion: reduce)"); const update = () => setReduced(media.matches); update(); media.addEventListener("change", update); return () => media.removeEventListener("change", update); }, []); return <Canvas aria-hidden="true" dpr={typeof window !== "undefined" && window.innerWidth < 768 ? [1, 1.5] : [1, 2]} frameloop={reduced ? "demand" : "always"} camera={{ position: [0, 0, 8], fov: 45 }} gl={{ alpha: true, antialias: quality > .5, powerPreference: "low-power" }} className="!pointer-events-none !fixed !inset-0 !-z-10" fallback={<div className="fixed inset-0 -z-10 bg-gradient-to-br from-ink via-void to-plum" />}><PerformanceMonitor onDecline={() => setQuality(.5)} onIncline={() => setQuality(1)} /><VisibilityPause /><View.Portals /></Canvas>; }
+export { View };
