@@ -1,6 +1,7 @@
 // controllers/admin/auth.controller.js
 const Admin = require('../../models/user');
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 
 const WEBSITE_NAME = "Dcorelab";
@@ -16,9 +17,6 @@ const getTransporter = () => {
         user: process.env.FROM_MAIL,
         pass: process.env.GMAIL_APP_PASSWORD
       },
-      tls: {
-        rejectUnauthorized: false
-      }
     });
 
     transporter.verify((error) => {
@@ -76,7 +74,7 @@ class AuthController {
   // ====================== METHODS ======================
 
   async generateOTP() {
-    return Math.floor(100000 + Math.random() * 900000).toString();
+    return crypto.randomInt(100000, 1000000).toString();
   }
 
   async sendOTP(email, otp) {
@@ -131,7 +129,6 @@ class AuthController {
       await admin.save();
 
       const otp = await this.generateOTP();
-      console.log("Signup OTP:", otp);
 
       admin.otpHistory.push({
         otp,
@@ -210,7 +207,7 @@ class AuthController {
       const tempAdminId = req.session.tempAdminId;
       const purpose = req.session.purpose;
 
-      if (!tempAdminId || !otp || !purpose) {
+      if (!tempAdminId || !otp || !['signup', 'login'].includes(purpose)) {
         return res.render('admin/error', { message: 'Session expired. Please try again.' });
       }
 
@@ -233,9 +230,9 @@ class AuthController {
       latestOtpRecord.verified = true;
       await admin.save();
 
-      delete req.session.tempAdminId;
-      delete req.session.purpose;
-
+      await new Promise((resolve, reject) => {
+        req.session.regenerate((error) => error ? reject(error) : resolve());
+      });
       req.session.adminId = admin._id.toString();
       await this.logLogin(admin, req, 'success');
 

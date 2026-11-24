@@ -3,24 +3,42 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
-const nodemailer = require('nodemailer');
+const MongoStore = require('connect-mongo');
 require('dotenv').config();
 
-const { inject } = require("@vercel/analytics");
+const { inject } = require('@vercel/analytics');
 const connectDB = require('./app/config/db');
-const HomeVisit = require('./app/models/homevisit');   // ← New Model
+const HomeVisit = require('./app/models/homevisit');
+const { isAuthenticated } = require('./app/middleware/authmiddlware');
 
 const app = express();
 
 inject();
-connectDB();
+
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1);
+}
+
+if (!process.env.SESSION_SECRET || !process.env.MONGO_URI) {
+  throw new Error('SESSION_SECRET and MONGO_URI must be configured');
+}
 
 // ====================== MIDDLEWARE ======================
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'dcorelab-super-secret-key-2026',
+  secret: process.env.SESSION_SECRET,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI,
+    collectionName: 'sessions',
+    ttl: 60 * 60 * 24
+  }),
   resave: false,
   saveUninitialized: false,
-  cookie: { maxAge: 86400000, httpOnly: true, secure: process.env.NODE_ENV === 'production' }
+  cookie: {
+    maxAge: 86400000,
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax'
+  }
 }));
 
 app.set('view engine', 'ejs');
@@ -49,7 +67,7 @@ app.use(async (req, res, next) => {
 // ====================== API ROUTES ======================
 
 // 1. Real-time data for dashboard
-app.get('/api/vercel-realtime', async (req, res) => {
+app.get('/api/vercel-realtime', isAuthenticated, async (req, res) => {
   try {
     const totalViews = await HomeVisit.countDocuments();
     const uniqueIPs = await HomeVisit.distinct('ip');
@@ -66,30 +84,32 @@ app.get('/api/vercel-realtime', async (req, res) => {
       timestamp: new Date().toISOString()
     });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Analytics request failed:', err);
+    res.status(500).json({ error: 'Unable to load analytics data.' });
   }
 });
 
 // 2. Chart data - Last 7 days (for the new chart in admin)
 // Chart data with period support
-app.get('/api/analytics/chart', async (req, res) => {
+app.get('/api/analytics/chart', isAuthenticated, async (req, res) => {
   try {
     const period = req.query.period || '7';
-    let match = {};
-    let groupBy = { $dateToString: { format: "%Y-%m-%d", date: "$timestamp" } };
-    let limit = 7;
+    if (!['today', '7', '30', 'total'].includes(period)) {
+      return res.status(400).json({ error: 'Invalid analytics period.' });
+    }
+
+    const match = {};
+    let groupBy = { $dateToString: { format: '%Y-%m-%d', date: '$timestamp' } };
 
     if (period === 'today') {
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       match.timestamp = { $gte: today };
       groupBy = { $hour: "$timestamp" };
-      limit = 24;
     } else if (period === '30') {
       const thirtyDaysAgo = new Date();
       thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
       match.timestamp = { $gte: thirtyDaysAgo };
-      limit = 30;
     } else if (period === 'total') {
       // For total, show last 12 months or return summary
       const result = [{ label: "Total Views", value: await HomeVisit.countDocuments() }];
@@ -117,7 +137,8 @@ app.get('/api/analytics/chart', async (req, res) => {
 
     res.json({ labels, views });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error('Analytics request failed:', err);
+    res.status(500).json({ error: 'Unable to load analytics data.' });
   }
 });
 
@@ -125,15 +146,20 @@ app.get('/api/analytics/chart', async (req, res) => {
 app.use('/admin', require('./app/routes/admin/index'));
 app.use('/', require('./app/routes/ui/home.controller'));
 
-app.post('/send-inquiry', async (req, res) => { /* your existing email code */ });
-
 app.use((req, res) => {
   res.status(404).send(`<h1>404 - Page Not Found</h1><a href="/">Go Home</a>`);
 });
 
 // ====================== START SERVER ======================
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(`📊 MongoDB Visit Tracking + Unique IP Active`);
-});
+
+connectDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error('Unable to start the server:', error.message);
+    process.exitCode = 1;
+  });
